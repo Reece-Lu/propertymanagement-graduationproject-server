@@ -11,7 +11,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-
     @Select("select * from sys_user")
     List<User> findAll();
 
@@ -22,4 +21,5 @@ public interface UserMapper {
     @Update("update sys_user set username=#{username},password=#{password},nickname=#{nickname},email=#{email}" +
             ",phone=#{phone},address=#{address} where id =#{id}")
     int update(User user);
+
 }
