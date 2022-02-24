@@ -7,3 +7,7 @@ spring:
     url:jdbc: mysql://localhost:3306/propertyManagement?serverTimezone=GMT%2b8
     username: root
     password: Tapebook123
+mybatis:
+  mapper-locations: classpath:mapper/*.xml #扫描mapper文件夹中的所有xml文件
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
