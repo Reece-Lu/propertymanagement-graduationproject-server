@@ -22,4 +22,7 @@ public interface UserMapper {
 
     @Select("select * from sys_user limit #{pageNum},#{pageSize}")
     List<User> selectPage(Integer pageNum, Integer pageSize);
+
+    @Select("select count(*) from sys_user")
+    Integer selectTotal();
 }
