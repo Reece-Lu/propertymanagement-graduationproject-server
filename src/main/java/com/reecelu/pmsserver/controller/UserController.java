@@ -18,15 +18,30 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //新增和修改
     @PostMapping
     public Integer save(@RequestBody User user){
-        return userMapper.insert(user);
+        return userService.save(user);
     }
 
-
-    @GetMapping()
+    //查询所有
+    @GetMapping
     public List<User> index(){
-        List<User> all= userMapper.findAll();
-        return userMapper.findAll();
+        List<User> all = userMapper.findAll();
+        return all;
+    }
+
+    //删除
+    @DeleteMapping("/{id}")
+    public Integer delete(@PathVariable Integer id){
+        return userMapper.deleteById(id);
+    }
+
+    //分页查询实现
+    //接口路径 ，/user/page
+    @GetMapping("/page")
+    public List<User> findPage(@RequestParam Integer pageNum,@RequestParam Integer pageSize) {
+        pageNum = (pageNum -1)*pageSize;
+        return userMapper.selectPage(pageNum,pageSize);
     }
 }
