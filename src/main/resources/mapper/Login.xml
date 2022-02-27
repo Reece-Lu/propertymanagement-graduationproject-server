@@ -2,13 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.reecelu.pmsserver.dao.LoginDao">
+    <!--对参数userName和password做映射-->
     <resultMap id="propertyManagerList" type="com.reecelu.pmsserver.entity.PropertyManager">
         <result property="userName" column="username"/>
-        <result property="jobTitle" column="job_title"/>
-        <result property="officePlace" column="office_place"/>
-        <result property="weChat" column="wechat"/>
     </resultMap>
-    <select id="login" resultType="com.reecelu.pmsserver.entity.PropertyManager">
-
+    <!--指向dao层对login方法-->
+    <select id="login" resultMap="propertyManagerList">
+        select * from property_manager where username = #{userName} and password = #{password};
     </select>
 </mapper>
