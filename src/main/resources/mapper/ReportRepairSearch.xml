@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reecelu.pmsserver.dao.ReportRepairSearchDao">
+    <resultMap id="ReportRepairsList" type="com.reecelu.pmsserver.entity.ReportRepairs">
+        <result property="reporterPhone" column="reporter_phone" jdbcType="VARCHAR"/>
+        <result property="reportTime" column="report_time" jdbcType="VARCHAR"/>
+        <result property="repairType" column="repair_type" jdbcType="VARCHAR"/>
+        <result property="repairLocation" column="repair_location" jdbcType="VARCHAR"/>
+        <result property="repairDescription" column="repair_description" jdbcType="VARCHAR"/>
+        <result property="repairStatus" column="repair_status" jdbcType="VARCHAR"/>
+        <result property="closure_time" column="closure_time" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="reportRepairSearch" resultMap="ReportRepairsList">
+        select * from report_repairs where reporter like concat('%',#{reporter},'%') and repair_type = #{repairType};
+    </select>
+</mapper>
