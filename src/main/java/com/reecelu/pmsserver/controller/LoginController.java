@@ -24,7 +24,6 @@ public class LoginController {
 
     @ApiOperation(value = "login",notes = "登录功能")  //swagger注释
 
-
     //Post请求-登陆验证
     @PostMapping()
     public Result login(@RequestBody LoginDTO loginDTO){
