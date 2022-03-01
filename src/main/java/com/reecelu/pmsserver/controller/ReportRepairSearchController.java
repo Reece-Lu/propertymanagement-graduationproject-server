@@ -29,11 +29,13 @@ public class ReportRepairSearchController {
         //取出传入参数
         String reporter=reportRepairSearchDTO.getReporter();
         String repairType=reportRepairSearchDTO.getRepairType();
+        //pageNum对应SQl语句中Limit条件的Start值，pageSize对应SQL语句Limit条件的"步长"
         int pageNum=(reportRepairSearchDTO.getPageNum()-1)* reportRepairSearchDTO.getPageSize();
         int pageSize=reportRepairSearchDTO.getPageSize();
 
-        //调用对应service层封装的getReportRepairs方法
+        //调用对应service层封装的getReportRepairs方法，获取模糊查询结果
         List<ReportRepairs> reportRepairs = reportRepairSearchService.getReportRepairs(reporter,repairType,pageNum,pageSize);
+        //调用对应service层封装的getSelectTotal方法，获取数据条数
         Integer total=reportRepairSearchService.getSelectTotal(reporter,repairType);
         Map<String,Object> res=new HashMap<>();
         res.put("total",total);

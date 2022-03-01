@@ -10,9 +10,9 @@ import java.util.List;
 @Mapper
 public interface ReportRepairSearchDao {
 
-    //指向mapper中的reportRepairSearch.xml，使用reportRepairSearch中 id="reportRepairSearch 的SQL语句
+    //指向mapper中的reportRepairSearch.xml，使用reportRepairSearch中 id="reportRepairSearch" 的SQL语句
     List<ReportRepairs> reportRepairSearch(String reporter, String repairType,int pageNum, int pageSize);
 
-
+    //指向mapper中的reportRepairSearch.xml，使用reportRepairSearch中 id="selectTotal" 的SQL语句
     Integer selectTotal(String reporter,@Param("repairType") String repair_type);
 }
