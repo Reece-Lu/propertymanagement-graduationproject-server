@@ -14,8 +14,12 @@ public class ReportRepairSearchServiceImpl implements ReportRepairSearchService 
     @Autowired
     ReportRepairSearchDao reportRepairSearchDao;
 
-    public List<ReportRepairs> getReportRepairs(String reporter, String repairType){
-        return reportRepairSearchDao.reportRepairSearch(reporter,repairType);
+    public List<ReportRepairs> getReportRepairs(String reporter, String repairType,int pageNum, int pageSize){
+        return reportRepairSearchDao.reportRepairSearch(reporter,repairType,pageNum,pageSize);
     }
 
+    @Override
+    public Integer getSelectTotal(String reporter, String repairType) {
+        return reportRepairSearchDao.selectTotal(reporter,repairType);
+    }
 }
