@@ -7,5 +7,8 @@ import java.util.List;
 
 @Service
 public interface ReportRepairSearchService {
-    List<ReportRepairs> getReportRepairs(String reporter, String repairType);
+
+    List<ReportRepairs> getReportRepairs(String reporter, String repairType,int pageNum, int pageSize);
+
+    Integer getSelectTotal(String reporter, String repairType);
 }

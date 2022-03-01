@@ -12,6 +12,11 @@
         <result property="closure_time" column="closure_time" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="reportRepairSearch" resultMap="ReportRepairsList">
-        select * from report_repairs where reporter like concat('%',#{reporter},'%') and repair_type = #{repairType};
+        select * from report_repairs where reporter like concat('%',#{reporter},'%') and repair_type like concat('%',#{repairType},'%') limit #{pageNum},#{pageSize};
     </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select count(*) from report_repairs where reporter like concat('%',#{reporter},'%') and repair_type like concat('%',#{repairType},'%');
+    </select>
+
 </mapper>
