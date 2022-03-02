@@ -2,6 +2,7 @@ package com.reecelu.pmsserver.controller;
 
 import com.reecelu.pmsserver.common.Constants;
 import com.reecelu.pmsserver.common.Result;
+import com.reecelu.pmsserver.controller.DTO.EditStatusDTO;
 import com.reecelu.pmsserver.controller.DTO.ReportRepairSearchDTO;
 import com.reecelu.pmsserver.entity.ReportRepairs;
 import com.reecelu.pmsserver.service.ReportRepairSearchService;
@@ -47,6 +48,24 @@ public class ReportRepairSearchController {
         }else{
             return Result.error(Constants.CODE_600,"登录失败");
         }
-
     }
+
+    //post方法，传入参数维修id，修改属性维修人"serviceman"和维修状态"repairStatus"，返回操作结果
+    @ApiOperation(value = "editStatus",notes = "修改维修人和维修状态")
+    @PostMapping("/editstatus")
+    public Result editStatus(@RequestBody EditStatusDTO editStatusDTO){
+        //获取DTO对象中的数据
+        int id=editStatusDTO.getId();
+        String serviceman=editStatusDTO.getServiceman();
+        String repairStatus=editStatusDTO.getRepairStatus();
+        //调用Service中的setEditStatus函数
+        Integer res = reportRepairSearchService.setEditStatus(id,serviceman,repairStatus);
+
+        if(res!=null){
+            return Result.success(res);
+        }else{
+            return Result.error(Constants.CODE_600,"修改失败");
+        }
+    }
+
 }

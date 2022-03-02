@@ -25,4 +25,9 @@ public class ReportRepairSearchServiceImpl implements ReportRepairSearchService 
     public Integer getSelectTotal(String reporter, String repairType) {
         return reportRepairSearchDao.selectTotal(reporter,repairType);
     }
+
+    //报修维修表中维修状态相关信息的修改
+    public Integer setEditStatus(int id,String serviceman, String repairStatus){
+        return reportRepairSearchDao.editStatus(id,serviceman,repairStatus);
+    }
 }

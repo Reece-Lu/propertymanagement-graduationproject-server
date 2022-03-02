@@ -19,4 +19,8 @@
         select count(*) from report_repairs where reporter like concat('%',#{reporter},'%') and repair_type like concat('%',#{repairType},'%');
     </select>
 
+    <update id="editStatus">
+        update report_repairs set serviceman=#{serviceman},repair_status=#{repairStatus} where id=#{id}
+    </update>
+
 </mapper>
