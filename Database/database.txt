@@ -13,3 +13,18 @@ CREATE TABLE `property_manager` (
   `create_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+#报修维修表
+CREATE TABLE `report_repairs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `reporter` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reporter_phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `report_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `repair_type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `repair_location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `repair_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `serviceman` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `repair_status` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `closure_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
