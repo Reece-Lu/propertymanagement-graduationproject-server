@@ -1,7 +1,6 @@
 package com.reecelu.pmsserver.dao;
 
 import com.reecelu.pmsserver.entity.ReportRepairs;
-import lombok.Data;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
