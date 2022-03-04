@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reecelu.pmsserver.dao.ProprietorInfoDao">
+    <resultMap id="SearchProprietorInfoList" type="com.reecelu.pmsserver.entity.Proprietor">
+        <result property="userName" column="username"/>
+        <result property="weChat" column="wechat"/>
+        <result property="weChat" column="wechat"/>
+        <result property="roleInFamily" column="role_in_family"/>
+    </resultMap>
+    <select id="SearchProprietorInfo" resultMap="SearchProprietorInfoList">
+        select * from proprietor where id = #{id};
+    </select>
+</mapper>

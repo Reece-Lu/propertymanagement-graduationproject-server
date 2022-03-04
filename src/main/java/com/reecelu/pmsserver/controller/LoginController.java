@@ -25,7 +25,7 @@ public class LoginController {
 
     //Post请求-物业登陆验证
     @ApiOperation(value = "loginForPropertyManagement",notes = "物业登录验证")  //swagger注释
-    @PostMapping("propertymanagement")
+    @PostMapping("/propertymanagement")
     public Result loginForPropertyManagement(@RequestBody LoginDTO loginDTO){
         //取出请求中的参数
         String userName=loginDTO.getUserName();

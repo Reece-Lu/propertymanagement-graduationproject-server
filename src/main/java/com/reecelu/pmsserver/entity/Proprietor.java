@@ -18,5 +18,5 @@ public class Proprietor {
     private String weChat;
     private String building;
     private String door;
-    private String role_in_family;
+    private String roleInFamily;
 }
