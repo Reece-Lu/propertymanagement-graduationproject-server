@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.reecelu.pmsserver.dao.ReportRepairSearchDao">
+<mapper namespace="com.reecelu.pmsserver.dao.ReportRepairDao">
     <resultMap id="ReportRepairsList" type="com.reecelu.pmsserver.entity.ReportRepairs">
         <result property="reporterPhone" column="reporter_phone" jdbcType="VARCHAR"/>
         <result property="reportTime" column="report_time" jdbcType="VARCHAR"/>
@@ -11,16 +11,34 @@
         <result property="repairStatus" column="repair_status" jdbcType="VARCHAR"/>
         <result property="closure_time" column="closure_time" jdbcType="VARCHAR"/>
     </resultMap>
+    <!--带模糊查找的分页查找-->
     <select id="reportRepairSearch" resultMap="ReportRepairsList">
         select * from report_repairs where reporter like concat('%',#{reporter},'%') and repair_type like concat('%',#{repairType},'%') limit #{pageNum},#{pageSize};
     </select>
 
+    <!--统计分页查找后的数据条数-->
     <select id="selectTotal" resultType="java.lang.Integer">
         select count(*) from report_repairs where reporter like concat('%',#{reporter},'%') and repair_type like concat('%',#{repairType},'%');
     </select>
 
+    <!--业主修改维修状态信息功能-->
     <update id="editStatus">
         update report_repairs set serviceman=#{serviceman},repair_status=#{repairStatus} where id=#{id}
     </update>
+
+    <parameterMap id="ReportRepairParameterMap" type="com.reecelu.pmsserver.entity.ReportRepairs">
+        <parameter property="reporterPhone" resultMap="reporter_phone" jdbcType="VARCHAR"/>
+        <parameter property="reportTime" resultMap="report_time" jdbcType="TIMESTAMP"/>
+        <parameter property="repairType" resultMap="repair_type" jdbcType="VARCHAR"/>
+        <parameter property="repairLocation" resultMap="repair_location" jdbcType="VARCHAR"/>
+        <parameter property="repairDescription" resultMap="repair_description" jdbcType="VARCHAR"/>
+        <parameter property="repairStatus" resultMap="repair_status" jdbcType="VARCHAR"/>
+
+    </parameterMap>
+
+    <!--业主创建表单插值语句-->
+    <insert id="createReport" parameterMap="ReportRepairParameterMap">
+        INSERT into report_repairs ( reporter, reporter_phone, report_time, repair_type, repair_location, repair_description, repair_status) VALUES (#{reporter},   #{reporterPhone}, #{reportTime}, #{repairType}, #{repairLocation}, #{repairDescription},#{repairStatus})
+    </insert>
 
 </mapper>
