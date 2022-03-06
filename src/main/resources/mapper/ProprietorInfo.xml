@@ -11,4 +11,38 @@
     <select id="SearchProprietorInfo" resultMap="SearchProprietorInfoList">
         select * from proprietor where id = #{id};
     </select>
+
+    <update id="updateName">
+        update proprietor  set name = #{value} where id=#{id};
+    </update>
+
+    <update id="updateTitle">
+        update proprietor  set title = #{value} where id=#{id};
+    </update>
+
+    <update id="updatePhone">
+        update proprietor  set phone = #{value} where id=#{id};
+    </update>
+
+    <update id="updateEmail">
+        update proprietor  set email = #{value} where id=#{id};
+    </update>
+
+    <update id="updateWeChat">
+        update proprietor  set wechat = #{value} where id=#{id};
+    </update>
+
+    <update id="updateBuilding">
+        update proprietor  set building = #{value} where id=#{id};
+    </update>
+
+    <update id="updateDoor">
+        update proprietor  set door = #{value} where id=#{id};
+    </update>
+
+    <update id="updateEoleInFamily">
+        update proprietor  set role_in_family = #{value} where id=#{id};
+    </update>
+
+
 </mapper>

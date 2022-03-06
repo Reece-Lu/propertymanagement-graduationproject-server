@@ -24,4 +24,28 @@ public class ProprietorInfoServiceImpl implements ProprietorInfoService {
         }
 
     }
+
+    //业主信息修改功能，根据传入的attribute值，判断需要修改的属性
+    @Override
+    public Integer changeProprietorInfo(int id, int attribute ,String value){
+        int feedback=-1;
+        if(attribute==1){
+            feedback = proprietorInfoDao.updateName(id,value);
+        }else if(attribute==2){
+            feedback=proprietorInfoDao.updateTitle(id,value);
+        }else if(attribute==3){
+            feedback=proprietorInfoDao.updatePhone(id,value);
+        }else if(attribute==4){
+            feedback=proprietorInfoDao.updateEmail(id,value);
+        }else if(attribute==5){
+            feedback=proprietorInfoDao.updateWeChat(id,value);
+        }else if(attribute==6){
+            feedback=proprietorInfoDao.updateDoor(id,value);
+        }else if(attribute==7){
+            feedback=proprietorInfoDao.updateBuilding(id,value);
+        }else{
+            feedback=proprietorInfoDao.updateEoleInFamily(id,value);
+        }
+        return feedback;
+    }
 }
