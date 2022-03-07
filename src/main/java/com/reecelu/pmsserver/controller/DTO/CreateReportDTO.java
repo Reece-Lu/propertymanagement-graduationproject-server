@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreateReportDTO {
     private String reporter;
+    private int reporterId;
     private String reporterPhone;
     private String reportTime;
     private String repairType;

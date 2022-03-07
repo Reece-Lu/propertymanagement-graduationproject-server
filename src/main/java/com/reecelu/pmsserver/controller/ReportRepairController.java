@@ -2,10 +2,7 @@ package com.reecelu.pmsserver.controller;
 
 import com.reecelu.pmsserver.common.Constants;
 import com.reecelu.pmsserver.common.Result;
-import com.reecelu.pmsserver.controller.DTO.ChangeProprietorInfoDTO;
-import com.reecelu.pmsserver.controller.DTO.CreateReportDTO;
-import com.reecelu.pmsserver.controller.DTO.EditStatusDTO;
-import com.reecelu.pmsserver.controller.DTO.ReportRepairSearchDTO;
+import com.reecelu.pmsserver.controller.DTO.*;
 import com.reecelu.pmsserver.entity.ReportRepairs;
 import com.reecelu.pmsserver.service.ReportRepairService;
 import io.swagger.annotations.ApiOperation;
@@ -87,6 +84,25 @@ public class ReportRepairController {
             return Result.error(Constants.CODE_600,"提交失败");
         }
 
+    }
+
+    /**
+     * 业主查询报修历史
+     * 传入参数为业主Id
+     * 倒叙返回数据
+     */
+    @ApiOperation(value = "checkFixingReport",notes = "业主查询报修历史功能")  //swagger注释
+    @PostMapping("/checkfixingreport")
+    public Result checkFixingReport(@RequestBody CheckFixingReportDTO checkFixingReportDTO){
+
+        //使用 feedback类型的对象获取 getProprietorInfo 返回结果
+        List<ReportRepairs> res=reportRepairService.getCheckFixingReport(checkFixingReportDTO);
+        //feedback为1，则说明信息修改成功
+        if(res!=null){
+            return Result.success(res);
+        }else{
+            return Result.error(Constants.CODE_600,"ERROR");
+        }
     }
 
 }

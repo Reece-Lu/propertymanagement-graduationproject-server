@@ -1,5 +1,6 @@
 package com.reecelu.pmsserver.service.impl;
 
+import com.reecelu.pmsserver.controller.DTO.CheckFixingReportDTO;
 import com.reecelu.pmsserver.controller.DTO.CreateReportDTO;
 import com.reecelu.pmsserver.dao.ReportRepairDao;
 import com.reecelu.pmsserver.entity.ReportRepairs;
@@ -33,9 +34,11 @@ public class ReportRepairServiceImpl implements ReportRepairService {
         return reportRepairDao.editStatus(id,serviceman,repairStatus);
     }
 
+    //业主新建报修工单
     public Integer createReport(CreateReportDTO createReportDTO){
         //将createReportDTO的数据取出给createReport函数
         String reporter =createReportDTO.getReporter();
+        int reporterId = createReportDTO.getReporterId();
         String reporterPhone= createReportDTO.getReporterPhone();
         //将String类型的reportTime转为数据库需要的Timestamp类型
         Timestamp reportTime = Timestamp.valueOf(createReportDTO.getReportTime());
@@ -44,6 +47,12 @@ public class ReportRepairServiceImpl implements ReportRepairService {
         String repairDescription=createReportDTO.getRepairDescription();
         String repairStatus=createReportDTO.getRepairStatus();
 
-        return reportRepairDao.createReport(reporter,reporterPhone,reportTime,repairType,repairLocation,repairDescription,repairStatus);
+        return reportRepairDao.createReport(reporter,reporterId,reporterPhone,reportTime,repairType,repairLocation,repairDescription,repairStatus);
+    }
+
+    //业主查询报修记录历史
+    public List<ReportRepairs> getCheckFixingReport(CheckFixingReportDTO checkFixingReportDTO){
+        int reporterId=checkFixingReportDTO.getReporterId();
+        return reportRepairDao.checkFixingReport(reporterId);
     }
 }

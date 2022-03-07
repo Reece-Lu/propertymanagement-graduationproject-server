@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.reecelu.pmsserver.dao.ReportRepairDao">
     <resultMap id="ReportRepairsList" type="com.reecelu.pmsserver.entity.ReportRepairs">
+        <result property="reporterId" column="reporter_id" jdbcType="VARCHAR"/>
         <result property="reporterPhone" column="reporter_phone" jdbcType="VARCHAR"/>
         <result property="reportTime" column="report_time" jdbcType="VARCHAR"/>
         <result property="repairType" column="repair_type" jdbcType="VARCHAR"/>
@@ -27,18 +28,23 @@
     </update>
 
     <parameterMap id="ReportRepairParameterMap" type="com.reecelu.pmsserver.entity.ReportRepairs">
+        <parameter property="reporterId" resultMap="reporter_id" jdbcType="INTEGER"/>
         <parameter property="reporterPhone" resultMap="reporter_phone" jdbcType="VARCHAR"/>
         <parameter property="reportTime" resultMap="report_time" jdbcType="TIMESTAMP"/>
         <parameter property="repairType" resultMap="repair_type" jdbcType="VARCHAR"/>
         <parameter property="repairLocation" resultMap="repair_location" jdbcType="VARCHAR"/>
         <parameter property="repairDescription" resultMap="repair_description" jdbcType="VARCHAR"/>
         <parameter property="repairStatus" resultMap="repair_status" jdbcType="VARCHAR"/>
-
     </parameterMap>
 
     <!--业主创建表单插值语句-->
     <insert id="createReport" parameterMap="ReportRepairParameterMap">
-        INSERT into report_repairs ( reporter, reporter_phone, report_time, repair_type, repair_location, repair_description, repair_status) VALUES (#{reporter},   #{reporterPhone}, #{reportTime}, #{repairType}, #{repairLocation}, #{repairDescription},#{repairStatus})
+        INSERT into report_repairs ( reporter, reporter_id, reporter_phone, report_time, repair_type, repair_location, repair_description, repair_status) VALUES (#{reporter}, #{reporterId} , #{reporterPhone}, #{reportTime}, #{repairType}, #{repairLocation}, #{repairDescription},#{repairStatus})
     </insert>
+
+    <!--业主查询报修记录表-->
+    <select id="checkFixingReport" resultMap="ReportRepairsList">
+        select * from  report_repairs where reporter_id = #{reporterId} ORDER BY report_time DESC;
+    </select>
 
 </mapper>

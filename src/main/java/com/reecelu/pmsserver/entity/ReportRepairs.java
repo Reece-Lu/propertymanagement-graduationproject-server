@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class ReportRepairs {
     private int id;
     private String reporter;
+    private int reporterId;
     private String reporterPhone;
     private String reportTime;
     private String repairType;
