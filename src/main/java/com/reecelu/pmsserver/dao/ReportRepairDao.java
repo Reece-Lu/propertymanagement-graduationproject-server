@@ -20,5 +20,8 @@ public interface ReportRepairDao {
     Integer editStatus(int id,String serviceman, @Param("repairStatus") String repair_status);
 
     //业主创建维修功能，指向mapper中的reportRepairSearch.xml，使用reportRepairSearch中 id="createReport" 的SQL语句
-    Integer createReport(String reporter, String reporterPhone, Timestamp reportTime, String repairType, String repairLocation, String repairDescription, String repairStatus);
+    Integer createReport(String reporter, int reporterId, String reporterPhone, Timestamp reportTime, String repairType, String repairLocation, String repairDescription, String repairStatus);
+
+    //业主查询报修历史
+    List<ReportRepairs> checkFixingReport(int reporterId);
 }
