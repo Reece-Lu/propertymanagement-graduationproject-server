@@ -3,9 +3,6 @@ package com.reecelu.pmsserver.dao;
 import com.reecelu.pmsserver.entity.PropertyManager;
 import com.reecelu.pmsserver.entity.Proprietor;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-
 
 import java.util.List;
 

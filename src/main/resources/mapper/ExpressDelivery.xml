@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reecelu.pmsserver.dao.ExpressDeliveryDao">
+    <resultMap id="ExpressDeliveryList" type="com.reecelu.pmsserver.entity.ExpressDelivery">
+        <result property="proprietorId" column="proprietor_id"/>
+        <result property="weChat" column="wechat"/>
+        <result property="deliveryCode" column="delivery_code"/>
+        <result property="deliveryType" column="delivery_type"/>
+        <result property="deliveryLocation" column="delivery_location"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+
+
+    <!--物业查找待取快递信息-->
+    <select id="searchExpressDelivery" resultMap="ExpressDeliveryList">
+        select b.name ,b.title, b.phone, a.* from express_delivery a, proprietor b where b.id=a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
+    </select>
+</mapper>
