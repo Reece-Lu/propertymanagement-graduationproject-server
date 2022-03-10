@@ -14,7 +14,7 @@
     </resultMap>
     <!--带模糊查找的分页查找-->
     <select id="reportRepairSearch" resultMap="ReportRepairsList">
-        select * from report_repairs where reporter like concat('%',#{reporter},'%') and repair_type like concat('%',#{repairType},'%') limit #{pageNum},#{pageSize};
+        select * from report_repairs where reporter like concat('%',#{reporter},'%') and repair_type like concat('%',#{repairType},'%') ORDER BY id DESC limit #{pageNum},#{pageSize};
     </select>
 
     <!--统计分页查找后的数据条数-->

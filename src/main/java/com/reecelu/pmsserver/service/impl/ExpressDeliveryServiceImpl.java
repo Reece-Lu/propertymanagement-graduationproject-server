@@ -7,7 +7,9 @@ import com.reecelu.pmsserver.service.ExpressDeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
@@ -21,6 +23,12 @@ public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
         String name=expressDeliveryPropertySearchDTO.getName();
         String phone=expressDeliveryPropertySearchDTO.getPhone();
 
-        return expressDeliveryDao.searchExpressDelivery(name,phone);
+        //pageNum对应SQl语句中Limit条件的Start值，pageSize对应SQL语句Limit条件的"步长"
+        int pageNum=(expressDeliveryPropertySearchDTO.getPageNum()-1)* expressDeliveryPropertySearchDTO.getPageSize();
+        int pageSize=expressDeliveryPropertySearchDTO.getPageSize();
+
+        List<ExpressDelivery> expressDelivery =expressDeliveryDao.searchExpressDelivery(name,phone,pageNum,pageSize);
+
+        return expressDelivery;
     }
 }

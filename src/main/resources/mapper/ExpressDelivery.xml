@@ -14,6 +14,11 @@
 
     <!--物业查找待取快递信息-->
     <select id="searchExpressDelivery" resultMap="ExpressDeliveryList">
-        select b.name ,b.title, b.phone, a.* from express_delivery a, proprietor b where b.id=a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
+        select b.name ,b.title, b.phone, a.* from express_delivery a, proprietor b where b.id=a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%') ORDER BY a.id DESC limit #{pageNum},#{pageSize};
     </select>
+    <!--物业查找待取快递信息-获取数据条数-->
+    <select id="countExpressDelivery" resultType="java.lang.Integer">
+        select count(*) from express_delivery a, proprietor b where b.id=a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
+    </select>
+
 </mapper>

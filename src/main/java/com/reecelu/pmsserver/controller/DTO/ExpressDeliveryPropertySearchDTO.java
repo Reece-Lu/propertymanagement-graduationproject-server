@@ -14,4 +14,6 @@ import lombok.NoArgsConstructor;
 public class ExpressDeliveryPropertySearchDTO {
     private String name; //快递主人姓名-用于模糊查找
     private String phone; //快递主人联系方式-用于模糊查找
+    private int pageNum;
+    private int pageSize;
 }
