@@ -34,4 +34,8 @@
     <insert id="entrustExpressDelivery" parameterMap="EntrustExpressDeliveryParameterMap">
         INSERT into express_delivery (proprietor_id, delivery_type, delivery_location, delivery_code,create_date,status) VALUES  (#{proprietorId},#{deliveryType},#{deliveryLocation},#{deliveryCode},#{createDate},#{status});
     </insert>
+
+    <update id="addDeliveryServiceman" >
+        Update express_delivery set serviceman=#{serviceman} where id = #{id};
+    </update>
 </mapper>

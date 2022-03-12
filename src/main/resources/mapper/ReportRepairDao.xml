@@ -24,7 +24,7 @@
 
     <!--业主修改维修状态信息功能-->
     <update id="editStatus">
-        update report_repairs set serviceman=#{serviceman},repair_status=#{repairStatus} where id=#{id}
+        update report_repairs set serviceman=#{serviceman},repair_status=#{repairStatus} where id=#{id};
     </update>
 
     <parameterMap id="ReportRepairParameterMap" type="com.reecelu.pmsserver.entity.ReportRepairs">
