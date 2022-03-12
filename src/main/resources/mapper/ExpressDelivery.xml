@@ -36,6 +36,6 @@
     </insert>
 
     <update id="addDeliveryServiceman" >
-        Update express_delivery set serviceman=#{serviceman} where id = #{id};
+        Update express_delivery set serviceman=#{serviceman}, status=#{status} where id = #{id};
     </update>
 </mapper>

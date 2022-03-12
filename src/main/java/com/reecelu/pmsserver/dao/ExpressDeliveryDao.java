@@ -18,5 +18,5 @@ public interface ExpressDeliveryDao {
     Integer entrustExpressDelivery(int proprietorId, String deliveryType, String deliveryLocation, String deliveryCode, Timestamp createDate, String status);
 
     //封装addDeliveryServiceman更新，物业更新派件人
-    Integer addDeliveryServiceman(int id, String serviceman);
+    Integer addDeliveryServiceman(int id, String serviceman ,String status);
 }
