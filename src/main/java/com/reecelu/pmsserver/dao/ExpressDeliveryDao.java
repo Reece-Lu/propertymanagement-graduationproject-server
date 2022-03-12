@@ -16,4 +16,7 @@ public interface ExpressDeliveryDao {
 
     //封装entrustExpressDelivery插值语句，实现业主申请快递代领服务
     Integer entrustExpressDelivery(int proprietorId, String deliveryType, String deliveryLocation, String deliveryCode, Timestamp createDate, String status);
+
+    //封装addDeliveryServiceman更新，物业更新派件人
+    Integer addDeliveryServiceman(int id, String serviceman);
 }

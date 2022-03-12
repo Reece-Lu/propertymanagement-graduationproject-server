@@ -1,5 +1,6 @@
 package com.reecelu.pmsserver.service;
 
+import com.reecelu.pmsserver.controller.DTO.AddDeliveryServicemanDTO;
 import com.reecelu.pmsserver.controller.DTO.EntrustExpressDeliveryDTO;
 import com.reecelu.pmsserver.controller.DTO.ExpressDeliveryPropertySearchDTO;
 import com.reecelu.pmsserver.entity.ExpressDelivery;
@@ -14,4 +15,7 @@ public interface ExpressDeliveryService {
 
     //业主申请快递代领服务
     Integer entrustExpressDelivery(EntrustExpressDeliveryDTO entrustExpressDeliveryDTO);
+
+    //物业添加派件人
+    Integer addExpressDeliveryServiceman(AddDeliveryServicemanDTO addDeliveryServicemanDTO);
 }

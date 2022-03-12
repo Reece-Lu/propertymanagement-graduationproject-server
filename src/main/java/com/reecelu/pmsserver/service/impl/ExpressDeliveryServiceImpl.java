@@ -1,5 +1,6 @@
 package com.reecelu.pmsserver.service.impl;
 
+import com.reecelu.pmsserver.controller.DTO.AddDeliveryServicemanDTO;
 import com.reecelu.pmsserver.controller.DTO.EntrustExpressDeliveryDTO;
 import com.reecelu.pmsserver.controller.DTO.ExpressDeliveryPropertySearchDTO;
 import com.reecelu.pmsserver.dao.ExpressDeliveryDao;
@@ -46,5 +47,14 @@ public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
 
         return expressDeliveryDao.entrustExpressDelivery(proprietorId,deliveryType,deliveryLocation,deliveryCode,createDate,status);
 
+    }
+
+    //物业更新派件人
+    @Override
+    public Integer addExpressDeliveryServiceman(AddDeliveryServicemanDTO addDeliveryServicemanDTO){
+        int id=addDeliveryServicemanDTO.getId();
+        String serviceman =addDeliveryServicemanDTO.getServiceman();
+
+        return expressDeliveryDao.addDeliveryServiceman(id,serviceman);
     }
 }
