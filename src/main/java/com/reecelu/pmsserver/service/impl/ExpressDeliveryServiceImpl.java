@@ -1,5 +1,6 @@
 package com.reecelu.pmsserver.service.impl;
 
+import com.reecelu.pmsserver.controller.DTO.EntrustExpressDeliveryDTO;
 import com.reecelu.pmsserver.controller.DTO.ExpressDeliveryPropertySearchDTO;
 import com.reecelu.pmsserver.dao.ExpressDeliveryDao;
 import com.reecelu.pmsserver.entity.ExpressDelivery;
@@ -7,6 +8,7 @@ import com.reecelu.pmsserver.service.ExpressDeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,5 +32,19 @@ public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
         List<ExpressDelivery> expressDelivery =expressDeliveryDao.searchExpressDelivery(name,phone,pageNum,pageSize);
 
         return expressDelivery;
+    }
+
+    //业主申请快递代领服务
+    @Override
+    public Integer entrustExpressDelivery(EntrustExpressDeliveryDTO entrustExpressDeliveryDTO){
+        int proprietorId = entrustExpressDeliveryDTO.getProprietorId();
+        String deliveryType = entrustExpressDeliveryDTO.getDeliveryType();
+        String deliveryLocation = entrustExpressDeliveryDTO.getDeliveryLocation();
+        String deliveryCode  = entrustExpressDeliveryDTO.getDeliveryCode();
+        Timestamp createDate = Timestamp.valueOf(entrustExpressDeliveryDTO.getCreateDate());
+        String status = entrustExpressDeliveryDTO.getStatus();
+
+        return expressDeliveryDao.entrustExpressDelivery(proprietorId,deliveryType,deliveryLocation,deliveryCode,createDate,status);
+
     }
 }

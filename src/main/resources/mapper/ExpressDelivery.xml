@@ -21,4 +21,17 @@
         select count(*) from express_delivery a, proprietor b where b.id=a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
     </select>
 
+    <!--业主-->
+    <parameterMap id="EntrustExpressDeliveryParameterMap" type="com.reecelu.pmsserver.entity.ExpressDelivery">
+        <parameter property="proprietorId" resultMap="proprietor_id" jdbcType="INTEGER"/>
+        <parameter property="deliveryType" resultMap="delivery_type" jdbcType="VARCHAR"/>
+        <parameter property="deliveryLocation" resultMap="delivery-location" jdbcType="VARCHAR"/>
+        <parameter property="deliveryCode" resultMap="delivery_code" jdbcType="VARCHAR"/>
+        <parameter property="createDate" resultMap="create_date" jdbcType="TIMESTAMP"/>
+    </parameterMap>
+
+    <!--业主申请快递待领插值语句-->
+    <insert id="entrustExpressDelivery" parameterMap="EntrustExpressDeliveryParameterMap">
+        INSERT into express_delivery (proprietor_id, delivery_type, delivery_location, delivery_code,create_date,status) VALUES  (#{proprietorId},#{deliveryType},#{deliveryLocation},#{deliveryCode},#{createDate},#{status});
+    </insert>
 </mapper>
