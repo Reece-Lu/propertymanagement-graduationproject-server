@@ -54,7 +54,8 @@ public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
     public Integer addExpressDeliveryServiceman(AddDeliveryServicemanDTO addDeliveryServicemanDTO){
         int id=addDeliveryServicemanDTO.getId();
         String serviceman =addDeliveryServicemanDTO.getServiceman();
+        String status = addDeliveryServicemanDTO.getStatus();
 
-        return expressDeliveryDao.addDeliveryServiceman(id,serviceman);
+        return expressDeliveryDao.addDeliveryServiceman(id,serviceman,status);
     }
 }

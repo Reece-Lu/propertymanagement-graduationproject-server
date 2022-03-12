@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AddDeliveryServicemanDTO {
     private int id;
+    private String status;
     private String serviceman;
 }
