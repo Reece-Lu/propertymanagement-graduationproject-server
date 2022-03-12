@@ -2,13 +2,11 @@ package com.reecelu.pmsserver.controller;
 
 import com.reecelu.pmsserver.common.Constants;
 import com.reecelu.pmsserver.common.Result;
+import com.reecelu.pmsserver.controller.DTO.EntrustExpressDeliveryDTO;
 import com.reecelu.pmsserver.controller.DTO.ExpressDeliveryPropertySearchDTO;
-import com.reecelu.pmsserver.controller.DTO.LoginDTO;
 import com.reecelu.pmsserver.dao.ExpressDeliveryDao;
 import com.reecelu.pmsserver.entity.ExpressDelivery;
-import com.reecelu.pmsserver.entity.PropertyManager;
 import com.reecelu.pmsserver.service.ExpressDeliveryService;
-import com.reecelu.pmsserver.service.LoginService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +45,20 @@ public class ExpressDeliveryController {
         res.put("tableData",result);
         if(res!=null){
             return Result.success(res);
+        }else{
+            return Result.error(Constants.CODE_600,"查询失败");
+        }
+
+    }
+
+    @ApiOperation(value = "proprietorEntrustDelivery",notes = "业主申请快递代领服务")
+    @PostMapping("/proprietorentrustdelivery")
+    public Result proprietorEntrustDelivery(@RequestBody EntrustExpressDeliveryDTO entrustExpressDeliveryDTO){
+
+        Integer result= expressDeliveryService.entrustExpressDelivery(entrustExpressDeliveryDTO);
+
+        if(result!=null){
+            return Result.success(result);
         }else{
             return Result.error(Constants.CODE_600,"查询失败");
         }
