@@ -19,4 +19,7 @@ public interface ExpressDeliveryDao {
 
     //封装addDeliveryServiceman更新，物业更新派件人
     Integer addDeliveryServiceman(int id, String serviceman ,String status);
+
+    //业主查询快递信息
+    List<ExpressDelivery> trackExpressDeliveryProprietor(int proprietorId);
 }

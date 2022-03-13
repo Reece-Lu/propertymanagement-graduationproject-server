@@ -3,6 +3,7 @@ package com.reecelu.pmsserver.service.impl;
 import com.reecelu.pmsserver.controller.DTO.AddDeliveryServicemanDTO;
 import com.reecelu.pmsserver.controller.DTO.EntrustExpressDeliveryDTO;
 import com.reecelu.pmsserver.controller.DTO.ExpressDeliveryPropertySearchDTO;
+import com.reecelu.pmsserver.controller.DTO.TrackExpressDeliveryDTO;
 import com.reecelu.pmsserver.dao.ExpressDeliveryDao;
 import com.reecelu.pmsserver.entity.ExpressDelivery;
 import com.reecelu.pmsserver.service.ExpressDeliveryService;
@@ -57,5 +58,11 @@ public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
         String status = addDeliveryServicemanDTO.getStatus();
 
         return expressDeliveryDao.addDeliveryServiceman(id,serviceman,status);
+    }
+
+    //业主查询快递信息
+    @Override
+    public List<ExpressDelivery> getExpressDeliveryInfoProprietor(TrackExpressDeliveryDTO trackExpressDeliveryDTO){
+        return expressDeliveryDao.trackExpressDeliveryProprietor(trackExpressDeliveryDTO.getProprietorId());
     }
 }
