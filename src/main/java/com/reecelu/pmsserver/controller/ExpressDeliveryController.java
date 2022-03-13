@@ -5,6 +5,7 @@ import com.reecelu.pmsserver.common.Result;
 import com.reecelu.pmsserver.controller.DTO.AddDeliveryServicemanDTO;
 import com.reecelu.pmsserver.controller.DTO.EntrustExpressDeliveryDTO;
 import com.reecelu.pmsserver.controller.DTO.ExpressDeliveryPropertySearchDTO;
+import com.reecelu.pmsserver.controller.DTO.TrackExpressDeliveryDTO;
 import com.reecelu.pmsserver.dao.ExpressDeliveryDao;
 import com.reecelu.pmsserver.entity.ExpressDelivery;
 import com.reecelu.pmsserver.service.ExpressDeliveryService;
@@ -75,6 +76,21 @@ public class ExpressDeliveryController {
 
         if(result!=null){
             return Result.success(result);
+        }else{
+            return Result.error(Constants.CODE_600,"查询失败");
+        }
+
+    }
+
+    //Post业主查询快递信息
+    @ApiOperation(value = "proprietorTrackDelivery",notes = "业主查询快递信息")
+    @PostMapping("/proprietortrackdelivery")
+    public Result proprietorTrackDelivery(@RequestBody TrackExpressDeliveryDTO trackExpressDeliveryDTO){
+
+        List<ExpressDelivery> res= expressDeliveryService.getExpressDeliveryInfoProprietor(trackExpressDeliveryDTO);
+
+        if(res!=null){
+            return Result.success(res);
         }else{
             return Result.error(Constants.CODE_600,"查询失败");
         }
