@@ -44,5 +44,12 @@
         update proprietor  set role_in_family = #{value} where id=#{id};
     </update>
 
+    <select id="PropertySearchAll" resultMap="SearchProprietorInfoList">
+        select * from proprietor where username like concat('%',#{username},'%') ORDER BY id DESC limit #{pageNum},#{pageSize};
+    </select>
+
+    <select id="countAllProperty" resultType="java.lang.Integer">
+        select count(*) from proprietor where username like concat('%',#{username},'%');
+    </select>
 
 </mapper>

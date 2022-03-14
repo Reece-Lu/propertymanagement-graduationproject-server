@@ -20,5 +20,7 @@ public interface ProprietorInfoDao {
     Integer updateBuilding(int id, String value);
     Integer updateEoleInFamily(int id, String value);
 
+    List<Proprietor> PropertySearchAll(String username, int pageNum, int pageSize);
 
+    Integer countAllProperty(String username);
 }
