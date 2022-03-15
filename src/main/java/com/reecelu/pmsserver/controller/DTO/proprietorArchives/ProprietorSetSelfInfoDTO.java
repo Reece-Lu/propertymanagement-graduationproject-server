@@ -1,4 +1,4 @@
-package com.reecelu.pmsserver.controller.DTO;
+package com.reecelu.pmsserver.controller.DTO.proprietorArchives;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChangeProprietorInfoDTO {
+public class ProprietorSetSelfInfoDTO {
      private int id;
      private int attribute;
      private String value;

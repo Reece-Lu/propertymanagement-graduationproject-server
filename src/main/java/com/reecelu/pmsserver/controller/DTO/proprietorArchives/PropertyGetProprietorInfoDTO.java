@@ -1,4 +1,4 @@
-package com.reecelu.pmsserver.controller.DTO;
+package com.reecelu.pmsserver.controller.DTO.proprietorArchives;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PropertyGetProprietorInfo {
+public class PropertyGetProprietorInfoDTO {
     private String username;
     private int pageNum;
     private int pageSize;

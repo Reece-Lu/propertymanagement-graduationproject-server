@@ -1,7 +1,7 @@
 package com.reecelu.pmsserver.service.impl;
 
-import com.reecelu.pmsserver.controller.DTO.CheckFixingReportDTO;
-import com.reecelu.pmsserver.controller.DTO.CreateReportDTO;
+import com.reecelu.pmsserver.controller.DTO.repair.RepairProprietorCheckListDTO;
+import com.reecelu.pmsserver.controller.DTO.repair.RepairProprietorCreateReportDTO;
 import com.reecelu.pmsserver.dao.ReportRepairDao;
 import com.reecelu.pmsserver.entity.ReportRepairs;
 import com.reecelu.pmsserver.service.ReportRepairService;
@@ -35,24 +35,24 @@ public class ReportRepairServiceImpl implements ReportRepairService {
     }
 
     //业主新建报修工单
-    public Integer createReport(CreateReportDTO createReportDTO){
+    public Integer createReport(RepairProprietorCreateReportDTO repairProprietorCreateReportDTO){
         //将createReportDTO的数据取出给createReport函数
-        String reporter =createReportDTO.getReporter();
-        int reporterId = createReportDTO.getReporterId();
-        String reporterPhone= createReportDTO.getReporterPhone();
+        String reporter = repairProprietorCreateReportDTO.getReporter();
+        int reporterId = repairProprietorCreateReportDTO.getReporterId();
+        String reporterPhone= repairProprietorCreateReportDTO.getReporterPhone();
         //将String类型的reportTime转为数据库需要的Timestamp类型
-        Timestamp reportTime = Timestamp.valueOf(createReportDTO.getReportTime());
-        String repairType=createReportDTO.getRepairType();
-        String repairLocation=createReportDTO.getRepairLocation();
-        String repairDescription=createReportDTO.getRepairDescription();
-        String repairStatus=createReportDTO.getRepairStatus();
+        Timestamp reportTime = Timestamp.valueOf(repairProprietorCreateReportDTO.getReportTime());
+        String repairType= repairProprietorCreateReportDTO.getRepairType();
+        String repairLocation= repairProprietorCreateReportDTO.getRepairLocation();
+        String repairDescription= repairProprietorCreateReportDTO.getRepairDescription();
+        String repairStatus= repairProprietorCreateReportDTO.getRepairStatus();
 
         return reportRepairDao.createReport(reporter,reporterId,reporterPhone,reportTime,repairType,repairLocation,repairDescription,repairStatus);
     }
 
     //业主查询报修记录历史
-    public List<ReportRepairs> getCheckFixingReport(CheckFixingReportDTO checkFixingReportDTO){
-        int reporterId=checkFixingReportDTO.getReporterId();
+    public List<ReportRepairs> getCheckFixingReport(RepairProprietorCheckListDTO repairProprietorCheckListDTO){
+        int reporterId= repairProprietorCheckListDTO.getReporterId();
         return reportRepairDao.checkFixingReport(reporterId);
     }
 }

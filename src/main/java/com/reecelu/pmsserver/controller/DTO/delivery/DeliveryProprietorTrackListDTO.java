@@ -1,4 +1,5 @@
-package com.reecelu.pmsserver.controller.DTO;
+package com.reecelu.pmsserver.controller.DTO.delivery;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProprietorInfoDTO {
-    private int id;
+public class DeliveryProprietorTrackListDTO {
+    private int proprietorId;
 }
