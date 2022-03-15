@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.reecelu.pmsserver.dao.PetDao">
+    <resultMap id="SearchPetList" type="com.reecelu.pmsserver.entity.Pet">
+        <result property="masterId" column="master_id"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+
+    <parameterMap id="PetParameterMap" type="com.reecelu.pmsserver.entity.Pet">
+        <parameter property="masterId" resultMap="master_id" jdbcType="INTEGER"/>
+        <parameter property="createDate" resultMap="create_date" jdbcType="TIMESTAMP"/>
+    </parameterMap>
+
+    <insert id="registerPet" parameterMap="PetParameterMap">
+        INSERT into pet (master_id, name,age,create_date, species)  VALUES  ( #{masterId}, #{name}, #{age}, #{createDate}, #{species});
+    </insert>
+
+</mapper>

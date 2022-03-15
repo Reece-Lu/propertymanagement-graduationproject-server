@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PropertyGetProprietorInfoDTO {
-    private String username;
+    private String name;
     private int pageNum;
     private int pageSize;
 }

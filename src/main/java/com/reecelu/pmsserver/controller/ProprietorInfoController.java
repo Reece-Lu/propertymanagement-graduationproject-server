@@ -78,7 +78,7 @@ public class ProprietorInfoController {
     @PostMapping("/propertysearchproprietorinfo")
     public Result propertySearchProprietorInfo(@RequestBody PropertyGetProprietorInfoDTO propertyGetProprietorInfoDTO){
 
-        Integer total=proprietorInfoDao.countAllProperty(propertyGetProprietorInfoDTO.getUsername());
+        Integer total=proprietorInfoDao.countAllProperty(propertyGetProprietorInfoDTO.getName());
         //使用 Proprietor (业主)类型的对象获取 getAllProprietor 返回结果
         List<Proprietor> result = proprietorInfoService.getAllProprietor(propertyGetProprietorInfoDTO);
         //若对象 res 为空则表明数据库为匹配到结果
