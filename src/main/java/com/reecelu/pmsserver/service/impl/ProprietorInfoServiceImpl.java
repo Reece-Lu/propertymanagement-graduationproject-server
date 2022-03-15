@@ -1,6 +1,6 @@
 package com.reecelu.pmsserver.service.impl;
 
-import com.reecelu.pmsserver.controller.DTO.PropertyGetProprietorInfo;
+import com.reecelu.pmsserver.controller.DTO.proprietorArchives.PropertyGetProprietorInfoDTO;
 import com.reecelu.pmsserver.dao.ProprietorInfoDao;
 import com.reecelu.pmsserver.entity.Proprietor;
 import com.reecelu.pmsserver.service.ProprietorInfoService;
@@ -52,11 +52,11 @@ public class ProprietorInfoServiceImpl implements ProprietorInfoService {
 
     //物业获取所有业主信息
     @Override
-    public  List<Proprietor> getAllProprietor(PropertyGetProprietorInfo propertyGetProprietorInfo){
-        String username = propertyGetProprietorInfo.getUsername();
+    public  List<Proprietor> getAllProprietor(PropertyGetProprietorInfoDTO propertyGetProprietorInfoDTO){
+        String username = propertyGetProprietorInfoDTO.getUsername();
 
-        int pageNum=(propertyGetProprietorInfo.getPageNum()-1)* propertyGetProprietorInfo.getPageSize();
-        int pageSize=propertyGetProprietorInfo.getPageSize();
+        int pageNum=(propertyGetProprietorInfoDTO.getPageNum()-1)* propertyGetProprietorInfoDTO.getPageSize();
+        int pageSize= propertyGetProprietorInfoDTO.getPageSize();
 
         return proprietorInfoDao.PropertySearchAll(username,pageNum,pageSize);
     }

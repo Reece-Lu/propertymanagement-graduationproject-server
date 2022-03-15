@@ -1,4 +1,4 @@
-package com.reecelu.pmsserver.controller.DTO;
+package com.reecelu.pmsserver.controller.DTO.delivery;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EntrustExpressDeliveryDTO {
+public class DeliveryProprietorEntrustDTO {
     private int proprietorId;
     private String deliveryType;
     private String deliveryLocation;

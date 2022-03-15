@@ -1,7 +1,7 @@
 package com.reecelu.pmsserver.service;
 
-import com.reecelu.pmsserver.controller.DTO.CheckFixingReportDTO;
-import com.reecelu.pmsserver.controller.DTO.CreateReportDTO;
+import com.reecelu.pmsserver.controller.DTO.repair.RepairProprietorCheckListDTO;
+import com.reecelu.pmsserver.controller.DTO.repair.RepairProprietorCreateReportDTO;
 import com.reecelu.pmsserver.entity.ReportRepairs;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +16,8 @@ public interface ReportRepairService {
 
     Integer setEditStatus(int id,String serviceman, String repairStatus);
 
-    Integer createReport(CreateReportDTO createReportDTO);
+    Integer createReport(RepairProprietorCreateReportDTO repairProprietorCreateReportDTO);
 
-    List<ReportRepairs> getCheckFixingReport(CheckFixingReportDTO checkFixingReportDTO);
+    List<ReportRepairs> getCheckFixingReport(RepairProprietorCheckListDTO repairProprietorCheckListDTO);
 
 }

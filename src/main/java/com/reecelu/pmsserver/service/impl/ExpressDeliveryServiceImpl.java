@@ -1,9 +1,9 @@
 package com.reecelu.pmsserver.service.impl;
 
-import com.reecelu.pmsserver.controller.DTO.AddDeliveryServicemanDTO;
-import com.reecelu.pmsserver.controller.DTO.EntrustExpressDeliveryDTO;
-import com.reecelu.pmsserver.controller.DTO.ExpressDeliveryPropertySearchDTO;
-import com.reecelu.pmsserver.controller.DTO.TrackExpressDeliveryDTO;
+import com.reecelu.pmsserver.controller.DTO.delivery.DeliveryPropertySetServicemanDTO;
+import com.reecelu.pmsserver.controller.DTO.delivery.DeliveryProprietorEntrustDTO;
+import com.reecelu.pmsserver.controller.DTO.delivery.DeliveryPropertySearchDTO;
+import com.reecelu.pmsserver.controller.DTO.delivery.DeliveryProprietorTrackListDTO;
 import com.reecelu.pmsserver.dao.ExpressDeliveryDao;
 import com.reecelu.pmsserver.entity.ExpressDelivery;
 import com.reecelu.pmsserver.service.ExpressDeliveryService;
@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
@@ -23,13 +21,13 @@ public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
 
     @Override
     //使用ExpressDeliveryDao中的searchExpressDelivery获取全部快递信息
-    public List<ExpressDelivery> getExpressDeliveryInfo(ExpressDeliveryPropertySearchDTO expressDeliveryPropertySearchDTO){
-        String name=expressDeliveryPropertySearchDTO.getName();
-        String phone=expressDeliveryPropertySearchDTO.getPhone();
+    public List<ExpressDelivery> getExpressDeliveryInfo(DeliveryPropertySearchDTO deliveryPropertySearchDTO){
+        String name= deliveryPropertySearchDTO.getName();
+        String phone= deliveryPropertySearchDTO.getPhone();
 
         //pageNum对应SQl语句中Limit条件的Start值，pageSize对应SQL语句Limit条件的"步长"
-        int pageNum=(expressDeliveryPropertySearchDTO.getPageNum()-1)* expressDeliveryPropertySearchDTO.getPageSize();
-        int pageSize=expressDeliveryPropertySearchDTO.getPageSize();
+        int pageNum=(deliveryPropertySearchDTO.getPageNum()-1)* deliveryPropertySearchDTO.getPageSize();
+        int pageSize= deliveryPropertySearchDTO.getPageSize();
 
         List<ExpressDelivery> expressDelivery =expressDeliveryDao.searchExpressDelivery(name,phone,pageNum,pageSize);
 
@@ -38,13 +36,13 @@ public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
 
     //业主申请快递代领服务
     @Override
-    public Integer entrustExpressDelivery(EntrustExpressDeliveryDTO entrustExpressDeliveryDTO){
-        int proprietorId = entrustExpressDeliveryDTO.getProprietorId();
-        String deliveryType = entrustExpressDeliveryDTO.getDeliveryType();
-        String deliveryLocation = entrustExpressDeliveryDTO.getDeliveryLocation();
-        String deliveryCode  = entrustExpressDeliveryDTO.getDeliveryCode();
-        Timestamp createDate = Timestamp.valueOf(entrustExpressDeliveryDTO.getCreateDate());
-        String status = entrustExpressDeliveryDTO.getStatus();
+    public Integer entrustExpressDelivery(DeliveryProprietorEntrustDTO deliveryProprietorEntrustDTO){
+        int proprietorId = deliveryProprietorEntrustDTO.getProprietorId();
+        String deliveryType = deliveryProprietorEntrustDTO.getDeliveryType();
+        String deliveryLocation = deliveryProprietorEntrustDTO.getDeliveryLocation();
+        String deliveryCode  = deliveryProprietorEntrustDTO.getDeliveryCode();
+        Timestamp createDate = Timestamp.valueOf(deliveryProprietorEntrustDTO.getCreateDate());
+        String status = deliveryProprietorEntrustDTO.getStatus();
 
         return expressDeliveryDao.entrustExpressDelivery(proprietorId,deliveryType,deliveryLocation,deliveryCode,createDate,status);
 
@@ -52,17 +50,17 @@ public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
 
     //物业更新派件人
     @Override
-    public Integer addExpressDeliveryServiceman(AddDeliveryServicemanDTO addDeliveryServicemanDTO){
-        int id=addDeliveryServicemanDTO.getId();
-        String serviceman =addDeliveryServicemanDTO.getServiceman();
-        String status = addDeliveryServicemanDTO.getStatus();
+    public Integer addExpressDeliveryServiceman(DeliveryPropertySetServicemanDTO deliveryPropertySetServicemanDTO){
+        int id= deliveryPropertySetServicemanDTO.getId();
+        String serviceman = deliveryPropertySetServicemanDTO.getServiceman();
+        String status = deliveryPropertySetServicemanDTO.getStatus();
 
         return expressDeliveryDao.addDeliveryServiceman(id,serviceman,status);
     }
 
     //业主查询快递信息
     @Override
-    public List<ExpressDelivery> getExpressDeliveryInfoProprietor(TrackExpressDeliveryDTO trackExpressDeliveryDTO){
-        return expressDeliveryDao.trackExpressDeliveryProprietor(trackExpressDeliveryDTO.getProprietorId());
+    public List<ExpressDelivery> getExpressDeliveryInfoProprietor(DeliveryProprietorTrackListDTO deliveryProprietorTrackListDTO){
+        return expressDeliveryDao.trackExpressDeliveryProprietor(deliveryProprietorTrackListDTO.getProprietorId());
     }
 }

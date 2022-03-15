@@ -1,4 +1,4 @@
-package com.reecelu.pmsserver.controller.DTO;
+package com.reecelu.pmsserver.controller.DTO.repair;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateReportDTO {
+public class RepairProprietorCreateReportDTO {
     private String reporter;
     private int reporterId;
     private String reporterPhone;
