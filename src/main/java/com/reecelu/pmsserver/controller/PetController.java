@@ -3,20 +3,19 @@ package com.reecelu.pmsserver.controller;
 
 import com.reecelu.pmsserver.common.Constants;
 import com.reecelu.pmsserver.common.Result;
+import com.reecelu.pmsserver.controller.DTO.pet.PetPropertySearchDTO;
 import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorRegisterDTO;
-import com.reecelu.pmsserver.controller.DTO.proprietorArchives.ProprietorGetSelfInfoDTO;
 import com.reecelu.pmsserver.dao.PetDao;
-import com.reecelu.pmsserver.dao.ProprietorInfoDao;
-import com.reecelu.pmsserver.entity.Proprietor;
+import com.reecelu.pmsserver.entity.Pet;
 import com.reecelu.pmsserver.service.PetService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/pms/pet")
@@ -24,6 +23,9 @@ import javax.annotation.Resource;
 public class PetController {
     @Autowired
     PetService petService;
+
+    @Autowired
+    PetDao petDao;
 
     @ApiOperation(value = "proprietorRegisterPet",notes = "业主登记宠物")  //swagger注释
     @PostMapping("/proprietorregisterPet")
@@ -36,6 +38,26 @@ public class PetController {
             return Result.success(res);
         }else{
             return Result.error(Constants.CODE_600,"登记失败咯");
+        }
+
+    }
+
+
+    @ApiOperation(value = "propertySearchPet",notes = "物业查询宠物")  //swagger注释
+    @PostMapping("/propertysearchpet")
+    public Result propertySearchPet(@RequestBody PetPropertySearchDTO petProprietorRegisterDTO ){
+
+       List<Pet> result = petService.propertySearchPet(petProprietorRegisterDTO);
+       int total = petDao.propertySearchCount(petProprietorRegisterDTO.getName(),petProprietorRegisterDTO.getPhone());
+
+        Map<String,Object> res=new HashMap<>();
+        res.put("total",total);
+        res.put("tableData",result);
+
+        if(res!=null){
+            return Result.success(res);
+        }else{
+            return Result.error(Constants.CODE_600,"查询失败");
         }
 
     }

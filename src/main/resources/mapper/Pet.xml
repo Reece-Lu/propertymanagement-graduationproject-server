@@ -14,7 +14,17 @@
     </parameterMap>
 
     <insert id="registerPet" parameterMap="PetParameterMap">
-        INSERT into pet (master_id, name,age,create_date, species)  VALUES  ( #{masterId}, #{name}, #{age}, #{createDate}, #{species});
+        INSERT into pet (master_id, name,age,create_date, species)  VALUES  ( #{masterId}, #{name}, #{age}, #{createDate}, #{species} );
     </insert>
+
+<!--  业主查询宠物档案  -->
+    <select id="propertySearch" resultMap="SearchPetList">
+        select b.name ,b.title, b.phone, a.* from pet a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%') limit #{pageNum},#{pageSize};
+    </select>
+<!--业主查询宠物档案数据条数统计-->
+    <select id="propertySearchCount" resultType="java.lang.Integer">
+        select count(*) from pet a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
+    </select>
+
 
 </mapper>

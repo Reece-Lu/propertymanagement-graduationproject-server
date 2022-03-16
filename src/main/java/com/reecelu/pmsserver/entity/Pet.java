@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pet {
+public class Pet extends Proprietor{
     private int id;
     private int masterId;
     private String name;
