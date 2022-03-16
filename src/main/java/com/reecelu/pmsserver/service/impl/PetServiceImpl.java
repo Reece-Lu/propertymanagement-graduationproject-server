@@ -20,12 +20,12 @@ public class PetServiceImpl implements PetService {
 
     public Integer proprietorRegister(PetProprietorRegisterDTO petProprietorRegisterDTO){
         int masterId = petProprietorRegisterDTO.getMasterId();
-        String name = petProprietorRegisterDTO.getName();
+        String petName = petProprietorRegisterDTO.getPetName();
         int age =petProprietorRegisterDTO.getAge();
         Timestamp createDate = Timestamp.valueOf(petProprietorRegisterDTO.getCreateDate());
         String species =petProprietorRegisterDTO.getSpecies();
 
-        return petDao.registerPet(masterId,name,age,createDate,species);
+        return petDao.registerPet(masterId,petName,age,createDate,species);
     }
 
     public List<Pet> propertySearchPet(PetPropertySearchDTO petPropertySearchDTO){

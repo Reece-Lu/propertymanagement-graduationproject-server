@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Pet extends Proprietor{
     private int id;
     private int masterId;
-    private String name;
+    private String petName;
     private int age;
     private String createDate;
     private String species;

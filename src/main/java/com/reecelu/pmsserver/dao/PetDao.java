@@ -10,7 +10,7 @@ import java.util.List;
 public interface PetDao {
 
     //登记宠物
-    Integer registerPet(int masterId, String name, int age, Timestamp createDate,String species);
+    Integer registerPet(int masterId, String petName, int age, Timestamp createDate,String species);
 
     List<Pet> propertySearch(String name,String phone , int pageNum,int pageSize);
 
