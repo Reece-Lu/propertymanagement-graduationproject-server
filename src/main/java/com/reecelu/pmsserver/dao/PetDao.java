@@ -15,4 +15,6 @@ public interface PetDao {
     List<Pet> propertySearch(String name,String phone , int pageNum,int pageSize);
 
     Integer propertySearchCount(String name,String phone);
+
+    List<Pet> proprietorSearchPet(int masterId);
 }

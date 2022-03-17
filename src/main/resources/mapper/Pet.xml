@@ -19,14 +19,21 @@
         INSERT into pet (master_id, pet_name,age,create_date, species)  VALUES  ( #{masterId}, #{petName}, #{age}, #{createDate}, #{species} );
     </insert>
 
-<!--  业主查询宠物档案  -->
+<!--  物业查询宠物档案  -->
     <select id="propertySearch" resultMap="SearchPetList">
         select b.name ,b.title, b.phone,a.id, a.pet_name, a.age ,a.create_date, a.species from pet a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%') limit #{pageNum},#{pageSize};
     </select>
-<!--业主查询宠物档案数据条数统计-->
+<!--物业查询宠物档案数据条数统计-->
     <select id="propertySearchCount" resultType="java.lang.Integer">
         select count(*) from pet a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
     </select>
+
+<!-- 业主查询 -->
+    <select id="proprietorSearchPet" resultMap="SearchPetList">
+        select * from pet where master_id = #{masterId};
+    </select>
+
+
 
 
 </mapper>

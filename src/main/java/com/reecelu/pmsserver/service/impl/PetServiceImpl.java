@@ -2,6 +2,7 @@ package com.reecelu.pmsserver.service.impl;
 
 import com.reecelu.pmsserver.controller.DTO.pet.PetPropertySearchDTO;
 import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorRegisterDTO;
+import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorSearchDTO;
 import com.reecelu.pmsserver.dao.PetDao;
 import com.reecelu.pmsserver.entity.Pet;
 import com.reecelu.pmsserver.service.PetService;
@@ -52,6 +53,10 @@ public class PetServiceImpl implements PetService {
         Calendar date = Calendar.getInstance();
         String year = String.valueOf(date.get(Calendar.YEAR));
         return year;
+    }
+
+    public List<Pet> proprietorSearchPet(PetProprietorSearchDTO petProprietorSearchDTO){
+        return petDao.proprietorSearchPet(petProprietorSearchDTO.getMasterId());
     }
 
 }
