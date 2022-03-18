@@ -3,6 +3,7 @@ package com.reecelu.pmsserver.service;
 import com.reecelu.pmsserver.controller.DTO.pet.PetPropertySearchDTO;
 import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorRegisterDTO;
 import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorSearchDTO;
+import com.reecelu.pmsserver.controller.DTO.pet.ProprietorSetPetInfoDTO;
 import com.reecelu.pmsserver.entity.Pet;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,8 @@ public interface PetService {
 
     List<Pet> propertySearchPet(PetPropertySearchDTO petPropertySearchDTO);
 
-    String getSysYear();
-
     List<Pet> proprietorSearchPet(PetProprietorSearchDTO petProprietorSearchDTO);
+
+    Integer proprietorSetPet(ProprietorSetPetInfoDTO proprietorSetPetInfoDTO);
+
 }

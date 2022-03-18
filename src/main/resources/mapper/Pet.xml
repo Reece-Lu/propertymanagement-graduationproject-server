@@ -32,8 +32,9 @@
     <select id="proprietorSearchPet" resultMap="SearchPetList">
         select * from pet where master_id = #{masterId};
     </select>
-
-
-
+<!-- 业主更改宠物信息  -->
+    <update id="proprietorSetPetInfo">
+        update pet set pet_name = #{petName} , age = #{age} , create_date = #{createDate} , species = #{species} where id = #{id};
+    </update>
 
 </mapper>

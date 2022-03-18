@@ -6,6 +6,7 @@ import com.reecelu.pmsserver.common.Result;
 import com.reecelu.pmsserver.controller.DTO.pet.PetPropertySearchDTO;
 import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorRegisterDTO;
 import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorSearchDTO;
+import com.reecelu.pmsserver.controller.DTO.pet.ProprietorSetPetInfoDTO;
 import com.reecelu.pmsserver.dao.PetDao;
 import com.reecelu.pmsserver.entity.Pet;
 import com.reecelu.pmsserver.service.PetService;
@@ -74,6 +75,20 @@ public class PetController {
             return Result.success(result);
         }else{
             return Result.error(Constants.CODE_600,"查询失败");
+        }
+
+    }
+
+    @ApiOperation(value = "proprietorSetPet",notes = "物业更新宠物信息")  //swagger注释
+    @PostMapping("/proprietorsetpet")
+    public Result proprietorSetPet(@RequestBody ProprietorSetPetInfoDTO proprietorSetPetInfoDTO){
+
+        Integer res = petService.proprietorSetPet(proprietorSetPetInfoDTO);
+
+        if(res!=null){
+            return Result.success(res);
+        }else{
+            return Result.error(Constants.CODE_600,"更新失败");
         }
 
     }
