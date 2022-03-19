@@ -53,11 +53,11 @@ public class ProprietorInfoServiceImpl implements ProprietorInfoService {
     //物业获取所有业主信息
     @Override
     public  List<Proprietor> getAllProprietor(PropertyGetProprietorInfoDTO propertyGetProprietorInfoDTO){
-        String username = propertyGetProprietorInfoDTO.getUsername();
+        String name = propertyGetProprietorInfoDTO.getName();
 
         int pageNum=(propertyGetProprietorInfoDTO.getPageNum()-1)* propertyGetProprietorInfoDTO.getPageSize();
         int pageSize= propertyGetProprietorInfoDTO.getPageSize();
 
-        return proprietorInfoDao.PropertySearchAll(username,pageNum,pageSize);
+        return proprietorInfoDao.PropertySearchAll(name,pageNum,pageSize);
     }
 }

@@ -45,11 +45,11 @@
     </update>
 
     <select id="PropertySearchAll" resultMap="SearchProprietorInfoList">
-        select * from proprietor where username like concat('%',#{username},'%') ORDER BY id DESC limit #{pageNum},#{pageSize};
+        select * from proprietor where name like concat('%',#{name},'%') limit #{pageNum},#{pageSize};
     </select>
 
     <select id="countAllProperty" resultType="java.lang.Integer">
-        select count(*) from proprietor where username like concat('%',#{username},'%');
+        select count(*) from proprietor where name like concat('%',#{name},'%');
     </select>
 
 </mapper>

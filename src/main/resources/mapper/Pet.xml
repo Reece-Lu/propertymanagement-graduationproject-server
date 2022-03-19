@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.reecelu.pmsserver.dao.PetDao">
+    <resultMap id="SearchPetList" type="com.reecelu.pmsserver.entity.Pet">
+        <result property="masterId" column="master_id"/>
+        <result property="createDate" column="create_date"/>
+        <result property="petName" column="pet_name"/>
+    </resultMap>
+
+    <parameterMap id="PetParameterMap" type="com.reecelu.pmsserver.entity.Pet">
+        <parameter property="masterId" resultMap="master_id" jdbcType="INTEGER"/>
+        <parameter property="createDate" resultMap="create_date" jdbcType="TIMESTAMP"/>
+        <parameter property="petName" resultMap="pet_name" jdbcType="VARCHAR"/>
+    </parameterMap>
+
+    <insert id="registerPet" parameterMap="PetParameterMap">
+        INSERT into pet (master_id, pet_name,age,create_date, species)  VALUES  ( #{masterId}, #{petName}, #{age}, #{createDate}, #{species} );
+    </insert>
+
+<!--  物业查询宠物档案  -->
+    <select id="propertySearch" resultMap="SearchPetList">
+        select b.name ,b.title, b.phone,a.id, a.pet_name, a.age ,a.create_date, a.species from pet a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%') limit #{pageNum},#{pageSize};
+    </select>
+<!--物业查询宠物档案数据条数统计-->
+    <select id="propertySearchCount" resultType="java.lang.Integer">
+        select count(*) from pet a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
+    </select>
+
+<!-- 业主查询 -->
+    <select id="proprietorSearchPet" resultMap="SearchPetList">
+        select * from pet where master_id = #{masterId};
+    </select>
+<!-- 业主更改宠物信息  -->
+    <update id="proprietorSetPetInfo">
+        update pet set pet_name = #{petName} , age = #{age} , create_date = #{createDate} , species = #{species} where id = #{id};
+    </update>
+
+</mapper>
