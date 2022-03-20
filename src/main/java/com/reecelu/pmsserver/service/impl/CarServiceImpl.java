@@ -1,10 +1,14 @@
 package com.reecelu.pmsserver.service.impl;
 
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorRegisterDTO;
+import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorSearchDTO;
 import com.reecelu.pmsserver.dao.CarDao;
+import com.reecelu.pmsserver.entity.Car;
 import com.reecelu.pmsserver.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -19,5 +23,11 @@ public class CarServiceImpl implements CarService {
          String colour = carProprietorRegisterDTO.getColour();
 
          return carDao.proprietorRegisterCar(masterId , licensePlate , parkingSpace , colour);
+     }
+
+     public List<Car> proprietorSearchCar(CarProprietorSearchDTO carProprietorSearchDTO){
+         int masterId = carProprietorSearchDTO.getMasterId();
+
+         return carDao.proprietorSearchCar(masterId);
      }
 }

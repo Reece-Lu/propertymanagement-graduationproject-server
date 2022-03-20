@@ -3,7 +3,9 @@ package com.reecelu.pmsserver.controller;
 import com.reecelu.pmsserver.common.Constants;
 import com.reecelu.pmsserver.common.Result;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorRegisterDTO;
+import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorSearchDTO;
 import com.reecelu.pmsserver.controller.DTO.delivery.DeliveryPropertySearchDTO;
+import com.reecelu.pmsserver.entity.Car;
 import com.reecelu.pmsserver.entity.ExpressDelivery;
 import com.reecelu.pmsserver.service.CarService;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/pms/car")
@@ -32,6 +35,22 @@ public class CarController {
 
         if(res!=null){
             return Result.success(res);
+        }else{
+            return Result.error(Constants.CODE_600,"登记失败");
+        }
+
+    }
+
+
+    //Post请求·业主·搜索车辆
+    @ApiOperation(value = "proprietySearchCar",notes = "业主查询车辆")  //swagger注释
+    @PostMapping("/proprietysearchcar")
+    public Result proprietySearchCar(@RequestBody CarProprietorSearchDTO carProprietorSearchDTO){
+
+        List<Car> result=carService.proprietorSearchCar(carProprietorSearchDTO);
+
+        if(result!=null){
+            return Result.success(result);
         }else{
             return Result.error(Constants.CODE_600,"登记失败");
         }
