@@ -23,8 +23,16 @@
         select * from car where master_id = #{masterId};
     </select>
 <!-- 业主·修改车辆信息 -->
-
-    <update id="propertyChangeCarInfo">
+    <update id="proprietorChangeCarInfo">
         Update car set license_plate = #{licensePlate} , parking_space = #{parkingSpace} , colour = #{colour} where id = #{id};
     </update>
+<!--  物业·查询小区车辆  -->
+    <select id="propertySearchCar" resultMap="CarList">
+        select b.name ,b.title, b.phone, a.* from car a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%') limit #{pageNum},#{pageSize};
+    </select>
+<!--  物业·统计查询结果数据量  -->
+    <select id="countPropertySearchCar" resultType="java.lang.Integer">
+        select count(*) from car a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
+    </select>
+
 </mapper>

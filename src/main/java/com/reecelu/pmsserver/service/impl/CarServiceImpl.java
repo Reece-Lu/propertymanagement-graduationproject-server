@@ -3,6 +3,7 @@ package com.reecelu.pmsserver.service.impl;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorChangeCarInfoDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorRegisterDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorSearchDTO;
+import com.reecelu.pmsserver.controller.DTO.Car.PropertySearchCarDTO;
 import com.reecelu.pmsserver.dao.CarDao;
 import com.reecelu.pmsserver.entity.Car;
 import com.reecelu.pmsserver.service.CarService;
@@ -38,6 +39,15 @@ public class CarServiceImpl implements CarService {
          String parkingSpace = carProprietorChangeCarInfoDTO.getParkingSpace();
          String colour = carProprietorChangeCarInfoDTO.getColour();
 
-         return carDao.propertyChangeCarInfo(id, licensePlate , parkingSpace , colour);
+         return carDao.proprietorChangeCarInfo(id, licensePlate , parkingSpace , colour);
+     }
+
+     public List<Car> propertySearchCar(PropertySearchCarDTO propertySearchCarDTO){
+         String name = propertySearchCarDTO.getName();
+         String phone = propertySearchCarDTO.getPhone();
+         int pageNum=(propertySearchCarDTO.getPageNum()-1)* propertySearchCarDTO.getPageSize();
+         int pageSize= propertySearchCarDTO.getPageSize();
+
+         return carDao.propertySearchCar(name , phone , pageNum , pageSize);
      }
 }

@@ -12,5 +12,9 @@ public interface CarDao {
     // 业主·查询车辆
     List<Car> proprietorSearchCar(int masterId);
     // 业主·修改车辆信息
-    Integer propertyChangeCarInfo(int id, String licensePlate, String parkingSpace, String colour);
+    Integer proprietorChangeCarInfo(int id, String licensePlate, String parkingSpace, String colour);
+    // 物业·查询车辆信息
+    List<Car> propertySearchCar(String name , String phone , int pageNum ,int pageSize);
+    // 物业·统计车辆查询结果数量
+    Integer countPropertySearchCar(String name , String phone);
 }

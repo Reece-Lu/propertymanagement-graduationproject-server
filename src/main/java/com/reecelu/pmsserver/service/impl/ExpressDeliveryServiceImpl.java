@@ -24,7 +24,6 @@ public class ExpressDeliveryServiceImpl implements ExpressDeliveryService {
     public List<ExpressDelivery> getExpressDeliveryInfo(DeliveryPropertySearchDTO deliveryPropertySearchDTO){
         String name= deliveryPropertySearchDTO.getName();
         String phone= deliveryPropertySearchDTO.getPhone();
-
         //pageNum对应SQl语句中Limit条件的Start值，pageSize对应SQL语句Limit条件的"步长"
         int pageNum=(deliveryPropertySearchDTO.getPageNum()-1)* deliveryPropertySearchDTO.getPageSize();
         int pageSize= deliveryPropertySearchDTO.getPageSize();
