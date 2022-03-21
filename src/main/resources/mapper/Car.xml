@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reecelu.pmsserver.dao.CarDao">
+    <resultMap id="CarList" type="com.reecelu.pmsserver.entity.Car">
+        <result property="masterId" column="master_id"/>
+        <result property="licensePlate" column="license_plate"/>
+        <result property="parkingSpace" column="parking_space"/>
+    </resultMap>
+
+    <parameterMap id="CarParameterMap" type="com.reecelu.pmsserver.entity.Car">
+        <parameter property="masterId" resultMap="master_id" jdbcType="INTEGER"/>
+        <parameter property="licensePlate" resultMap="license_plate" jdbcType="VARCHAR"/>
+        <parameter property="parkingSpace" resultMap="parking_space" jdbcType="VARCHAR"/>
+    </parameterMap>
+
+<!--  业主·汽车登记  -->
+    <insert id="proprietorRegisterCar" parameterMap="CarParameterMap">
+        INSERT into car  ( master_id,  license_plate,  parking_space, colour)  VALUES  ( #{masterId} , #{ licensePlate}, #{parkingSpace}, #{colour});
+    </insert>
+<!--  业主·展示车辆信息  -->
+    <select id="proprietorSearchCar" resultMap="CarList">
+        select * from car where master_id = #{masterId};
+    </select>
+<!-- 业主·修改车辆信息 -->
+    <update id="proprietorChangeCarInfo">
+        Update car set license_plate = #{licensePlate} , parking_space = #{parkingSpace} , colour = #{colour} where id = #{id};
+    </update>
+<!--  物业·查询小区车辆  -->
+    <select id="propertySearchCar" resultMap="CarList">
+        select b.name ,b.title, b.phone, a.* from car a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%') limit #{pageNum},#{pageSize};
+    </select>
+<!--  物业·统计查询结果数据量  -->
+    <select id="countPropertySearchCar" resultType="java.lang.Integer">
+        select count(*) from car a, proprietor b where b.id = a.master_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
+    </select>
+
+</mapper>

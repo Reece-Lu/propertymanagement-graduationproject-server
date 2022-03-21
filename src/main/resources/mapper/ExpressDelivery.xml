@@ -14,33 +14,33 @@
     <parameterMap id="EntrustExpressDeliveryParameterMap" type="com.reecelu.pmsserver.entity.ExpressDelivery">
         <parameter property="proprietorId" resultMap="proprietor_id" jdbcType="INTEGER"/>
         <parameter property="deliveryType" resultMap="delivery_type" jdbcType="VARCHAR"/>
-        <parameter property="deliveryLocation" resultMap="delivery-location" jdbcType="VARCHAR"/>
+        <parameter property="deliveryLocation" resultMap="delivery_location" jdbcType="VARCHAR"/>
         <parameter property="deliveryCode" resultMap="delivery_code" jdbcType="VARCHAR"/>
         <parameter property="createDate" resultMap="create_date" jdbcType="TIMESTAMP"/>
     </parameterMap>
 
     <!--物业-->
-    <!--物业查找待取快递信息-->
+    <!--物业·查找待取快递信息-->
     <select id="searchExpressDelivery" resultMap="ExpressDeliveryList">
         select b.name ,b.title, b.phone, a.* from express_delivery a, proprietor b where b.id=a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%') ORDER BY a.id DESC limit #{pageNum},#{pageSize};
     </select>
-    <!--物业查找待取快递信息-获取数据条数-->
+    <!--物业·查找待取快递信息·获取数据条数-->
     <select id="countExpressDelivery" resultType="java.lang.Integer">
         select count(*) from express_delivery a, proprietor b where b.id=a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
     </select>
 
-    <!--物业设置派件人和状态-->
+    <!--物业·设置派件人和状态-->
     <update id="addDeliveryServiceman" >
         Update express_delivery set serviceman=#{serviceman}, status=#{status} where id = #{id};
     </update>
 
     <!--业主-->
-    <!--业主申请快递待领插值语句-->
+    <!--业主·申请快递待领插值语句-->
     <insert id="entrustExpressDelivery" parameterMap="EntrustExpressDeliveryParameterMap">
         INSERT into express_delivery (proprietor_id, delivery_type, delivery_location, delivery_code,create_date,status) VALUES  (#{proprietorId},#{deliveryType},#{deliveryLocation},#{deliveryCode},#{createDate},#{status});
     </insert>
 
-    <!--业主查询快递状态-->
+    <!--业主·查询快递状态-->
     <select id="trackExpressDeliveryProprietor" resultMap="ExpressDeliveryList">
         SELECT * from express_delivery where proprietor_id = #{proprietorId} ORDER BY id DESC;
     </select>

@@ -11,11 +11,11 @@
         <result property="userName" column="username"/>
     </resultMap>
 
-    <!--物业管理-登陆查询，指向dao层对login方法-->
+    <!--物业·登陆查询，指向dao层对login方法-->
     <select id="loginForPropertyManagement" resultMap="propertyManagerList">
         select * from property_manager where username = #{userName} and password = #{password};
     </select>
-    <!--业主登陆查询，指向dao层对login方法-->
+    <!--业主·登陆查询，指向dao层对login方法-->
     <select id="loginForProprietor" resultMap="ProprietorList">
         select * from proprietor where username = #{userName} and password = #{password};
     </select>
