@@ -2,11 +2,10 @@ package com.reecelu.pmsserver.controller;
 
 import com.reecelu.pmsserver.common.Constants;
 import com.reecelu.pmsserver.common.Result;
+import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorChangeCarInfoDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorRegisterDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorSearchDTO;
-import com.reecelu.pmsserver.controller.DTO.delivery.DeliveryPropertySearchDTO;
 import com.reecelu.pmsserver.entity.Car;
-import com.reecelu.pmsserver.entity.ExpressDelivery;
 import com.reecelu.pmsserver.service.CarService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +52,21 @@ public class CarController {
             return Result.success(result);
         }else{
             return Result.error(Constants.CODE_600,"登记失败");
+        }
+
+    }
+
+    //Post请求·业主·修改车辆信息
+    @ApiOperation(value = "proprietyChangeCarInfo",notes = "业主查询车辆")  //swagger注释
+    @PostMapping("/proprietychangecarinfo")
+    public Result proprietyChangeCarInfo(@RequestBody CarProprietorChangeCarInfoDTO carProprietorChangeCarInfoDTO){
+
+        int res=carService.proprietorChangeCarInfo(carProprietorChangeCarInfoDTO);
+
+        if(res!= 0){
+            return Result.success(res);
+        }else{
+            return Result.error(Constants.CODE_600,"修改失败");
         }
 
     }

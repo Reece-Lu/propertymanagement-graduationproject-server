@@ -1,5 +1,6 @@
 package com.reecelu.pmsserver.service.impl;
 
+import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorChangeCarInfoDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorRegisterDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorSearchDTO;
 import com.reecelu.pmsserver.dao.CarDao;
@@ -29,5 +30,14 @@ public class CarServiceImpl implements CarService {
          int masterId = carProprietorSearchDTO.getMasterId();
 
          return carDao.proprietorSearchCar(masterId);
+     }
+
+     public Integer proprietorChangeCarInfo(CarProprietorChangeCarInfoDTO carProprietorChangeCarInfoDTO){
+         int id = carProprietorChangeCarInfoDTO.getId();
+         String licensePlate =carProprietorChangeCarInfoDTO.getLicensePlate();
+         String parkingSpace = carProprietorChangeCarInfoDTO.getParkingSpace();
+         String colour = carProprietorChangeCarInfoDTO.getColour();
+
+         return carDao.propertyChangeCarInfo(id, licensePlate , parkingSpace , colour);
      }
 }

@@ -22,5 +22,9 @@
     <select id="proprietorSearchCar" resultMap="CarList">
         select * from car where master_id = #{masterId};
     </select>
+<!-- 业主·修改车辆信息 -->
 
+    <update id="propertyChangeCarInfo">
+        Update car set license_plate = #{licensePlate} , parking_space = #{parkingSpace} , colour = #{colour} where id = #{id};
+    </update>
 </mapper>
