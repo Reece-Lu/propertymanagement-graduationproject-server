@@ -3,7 +3,7 @@ package com.reecelu.pmsserver.service;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorChangeCarInfoDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorRegisterDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorSearchDTO;
-import com.reecelu.pmsserver.controller.DTO.Car.PropertySearchCarDTO;
+import com.reecelu.pmsserver.controller.DTO.Car.CarPropertySearchCarDTO;
 import com.reecelu.pmsserver.entity.Car;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +18,5 @@ public interface CarService {
     // 业主·修改车辆信息
     Integer proprietorChangeCarInfo(CarProprietorChangeCarInfoDTO carProprietorChangeCarInfoDTO);
     // 物业·查找小区车辆信息
-    List<Car> propertySearchCar(PropertySearchCarDTO propertySearchCarDTO);
+    List<Car> propertySearchCar(CarPropertySearchCarDTO carPropertySearchCarDTO);
 }

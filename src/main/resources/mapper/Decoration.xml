@@ -21,5 +21,13 @@
     <insert id="proprietorRegisterDecoration" parameterMap="DecorationParameterMap">
         INSERT into decoration ( proprietor_id, start_time , end_time , building , door , construction_crew)  VALUES  ( #{proprietorId}, #{startTime}, #{endTime}, #{building}, #{door}, #{constructionCrew});
     </insert>
+<!-- 物业·装修查询 -->
+    <select id="propertySearchDecoration" resultMap="DecorationList">
+        select b.name ,b.title, b.phone, a.* from decoration a, proprietor b where b.id = a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%') ORDER BY a.id DESC limit #{pageNum},#{pageSize};
+    </select>
+<!--  物业·统计数据量  -->
+    <select id="propertyCountSearchDecoration" resultType="java.lang.Integer">
+        select count(*) from decoration a, proprietor b where b.id = a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
+    </select>
 
 </mapper>

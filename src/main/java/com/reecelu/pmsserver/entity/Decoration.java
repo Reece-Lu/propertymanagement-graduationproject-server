@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Decoration {
+public class Decoration extends Proprietor {
 
     private int id;
     private int proprietorId;
