@@ -5,11 +5,9 @@ import com.reecelu.pmsserver.common.Result;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorChangeCarInfoDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorRegisterDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorSearchDTO;
-import com.reecelu.pmsserver.controller.DTO.Car.PropertySearchCarDTO;
-import com.reecelu.pmsserver.controller.DTO.delivery.DeliveryPropertySearchDTO;
+import com.reecelu.pmsserver.controller.DTO.Car.CarPropertySearchCarDTO;
 import com.reecelu.pmsserver.dao.CarDao;
 import com.reecelu.pmsserver.entity.Car;
-import com.reecelu.pmsserver.entity.ExpressDelivery;
 import com.reecelu.pmsserver.service.CarService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,11 +81,11 @@ public class CarController {
     //Post请求-物业快递查询
     @ApiOperation(value = "propertysearchcar",notes = "物业车辆查询")  //swagger注释
     @PostMapping("/propertysearchcar")
-    public Result propertySearchCar(@RequestBody PropertySearchCarDTO propertySearchCarDTO){
+    public Result propertySearchCar(@RequestBody CarPropertySearchCarDTO carPropertySearchCarDTO){
 
-        Integer total= carDao.countPropertySearchCar(propertySearchCarDTO.getName(), propertySearchCarDTO.getPhone());
+        Integer total= carDao.countPropertySearchCar(carPropertySearchCarDTO.getName(), carPropertySearchCarDTO.getPhone());
         //使用 ExpressDelivery (快递)类型的对象获取 getExpressDeliveryInfo 返回结果
-        List<Car> result = carService.propertySearchCar(propertySearchCarDTO);
+        List<Car> result = carService.propertySearchCar(carPropertySearchCarDTO);
         //若对象 res 为空则表明数据库为匹配到结果
 
         Map<String,Object> res=new HashMap<>();

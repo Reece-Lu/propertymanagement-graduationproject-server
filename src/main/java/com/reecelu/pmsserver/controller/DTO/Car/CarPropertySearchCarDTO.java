@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PropertySearchCarDTO {
+public class CarPropertySearchCarDTO {
     private String name;
     private String phone;
     private int pageNum;

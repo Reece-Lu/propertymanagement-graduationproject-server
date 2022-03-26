@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.reecelu.pmsserver.dao.DecorationDao">
+    <resultMap id="DecorationList" type="com.reecelu.pmsserver.entity.Decoration">
+        <result property="proprietorId" column="proprietor_id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="constructionCrew" column="construction_crew"/>
+    </resultMap>
+
+    <parameterMap id="DecorationParameterMap" type="com.reecelu.pmsserver.entity.Decoration">
+        <parameter property="proprietorId" resultMap="proprietor_id" jdbcType="INTEGER"/>
+        <parameter property="startTime" resultMap="start_time" jdbcType="TIMESTAMP"/>
+        <parameter property="endTime" resultMap="end_time" jdbcType="TIMESTAMP"/>
+        <parameter property="constructionCrew" resultMap="construction_crew" jdbcType="VARCHAR"/>
+    </parameterMap>
+
+<!--  业主·登记装修计划  -->
+    <insert id="proprietorRegisterDecoration" parameterMap="DecorationParameterMap">
+        INSERT into decoration ( proprietor_id, start_time , end_time , building , door , construction_crew)  VALUES  ( #{proprietorId}, #{startTime}, #{endTime}, #{building}, #{door}, #{constructionCrew});
+    </insert>
+<!-- 物业·装修查询 -->
+    <select id="propertySearchDecoration" resultMap="DecorationList">
+        select b.name ,b.title, b.phone, a.* from decoration a, proprietor b where b.id = a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%') ORDER BY a.id DESC limit #{pageNum},#{pageSize};
+    </select>
+<!--  物业·统计数据量  -->
+    <select id="propertyCountSearchDecoration" resultType="java.lang.Integer">
+        select count(*) from decoration a, proprietor b where b.id = a.proprietor_id and b.name like concat('%',#{name},'%') and b.phone like concat('%',#{phone},'%');
+    </select>
+
+</mapper>

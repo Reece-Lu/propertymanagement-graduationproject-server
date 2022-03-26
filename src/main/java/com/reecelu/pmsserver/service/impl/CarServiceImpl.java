@@ -3,7 +3,7 @@ package com.reecelu.pmsserver.service.impl;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorChangeCarInfoDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorRegisterDTO;
 import com.reecelu.pmsserver.controller.DTO.Car.CarProprietorSearchDTO;
-import com.reecelu.pmsserver.controller.DTO.Car.PropertySearchCarDTO;
+import com.reecelu.pmsserver.controller.DTO.Car.CarPropertySearchCarDTO;
 import com.reecelu.pmsserver.dao.CarDao;
 import com.reecelu.pmsserver.entity.Car;
 import com.reecelu.pmsserver.service.CarService;
@@ -42,11 +42,11 @@ public class CarServiceImpl implements CarService {
          return carDao.proprietorChangeCarInfo(id, licensePlate , parkingSpace , colour);
      }
 
-     public List<Car> propertySearchCar(PropertySearchCarDTO propertySearchCarDTO){
-         String name = propertySearchCarDTO.getName();
-         String phone = propertySearchCarDTO.getPhone();
-         int pageNum=(propertySearchCarDTO.getPageNum()-1)* propertySearchCarDTO.getPageSize();
-         int pageSize= propertySearchCarDTO.getPageSize();
+     public List<Car> propertySearchCar(CarPropertySearchCarDTO carPropertySearchCarDTO){
+         String name = carPropertySearchCarDTO.getName();
+         String phone = carPropertySearchCarDTO.getPhone();
+         int pageNum=(carPropertySearchCarDTO.getPageNum()-1)* carPropertySearchCarDTO.getPageSize();
+         int pageSize= carPropertySearchCarDTO.getPageSize();
 
          return carDao.propertySearchCar(name , phone , pageNum , pageSize);
      }
