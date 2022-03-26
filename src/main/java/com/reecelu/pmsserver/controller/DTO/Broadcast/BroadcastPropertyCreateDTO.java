@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class BroadcastPropertyCreateDTO {
     private int createManagerId;
     private String importanceLevel;
+    private String issueName;
     private String content;
     private String isDeleted;
     private String createDate;

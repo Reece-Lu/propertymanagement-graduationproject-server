@@ -5,20 +5,26 @@
     <resultMap id="BroadcastList" type="com.reecelu.pmsserver.entity.Broadcast">
         <result property="createManagerId" column="create_manager_id"/>
         <result property="importanceLevel" column="importance_level"/>
+        <result property="issueName" column="issue_name"/>
         <result property="isDeleted" column="is_deleted"/>
-        <result property="createDate" column="createDate"/>
+        <result property="createDate" column="create_date"/>
     </resultMap>
 
     <parameterMap id="BroadcastParameterMap" type="com.reecelu.pmsserver.entity.Broadcast">
         <parameter property="createManagerId" resultMap="create_manager_id" jdbcType="INTEGER"/>
         <parameter property="importanceLevel" resultMap="importance_level" jdbcType="VARCHAR"/>
+        <parameter property="issueName" resultMap="issue_name" jdbcType="VARCHAR"/>
         <parameter property="isDeleted" resultMap="is_deleted" jdbcType="VARCHAR"/>
         <parameter property="createDate" resultMap="create_date" jdbcType="TIMESTAMP"/>
     </parameterMap>
 
 <!--  物业·创建广播内容  -->
     <insert id="propertyCreateBroadcast" parameterMap="BroadcastParameterMap">
-        INSERT into broadcast (create_manager_id , importance_level,  content , is_deleted,create_date) VALUES(#{createManagerId},#{importanceLevel},#{content},#{  isDeleted },#{ createDate });
+        INSERT into broadcast (create_manager_id , importance_level, issue_name , content , is_deleted,create_date) VALUES(#{createManagerId},#{importanceLevel},#{issueName},#{content},#{ isDeleted },#{ createDate });
     </insert>
+<!--  通用·查询广播内容  -->
+    <select id="generalSearchBroadcast" resultMap="BroadcastList">
+        select * from broadcast ORDER BY create_date DESC;
+    </select>
 
 </mapper>
