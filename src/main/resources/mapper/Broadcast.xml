@@ -26,5 +26,9 @@
     <select id="generalSearchBroadcast" resultMap="BroadcastList">
         select * from broadcast ORDER BY create_date DESC;
     </select>
+<!--  物业·删除广播内容  -->
+    <update id="propertyDeleteBroadcast">
+        update broadcast set is_deleted = "1" where id = #{ id };
+    </update>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.reecelu.pmsserver.service.impl;
 
 import com.reecelu.pmsserver.controller.DTO.Broadcast.BroadcastPropertyCreateDTO;
+import com.reecelu.pmsserver.controller.DTO.Broadcast.BroadcastPropertyDeleteDTO;
 import com.reecelu.pmsserver.dao.BroadcastDao;
 import com.reecelu.pmsserver.entity.Broadcast;
 import com.reecelu.pmsserver.service.BroadcastService;
@@ -36,6 +37,10 @@ public class BroadcastServiceImpl implements BroadcastService {
             }
         }
         return all;
+    }
+
+    public Integer propertyDeleteBroadcast(BroadcastPropertyDeleteDTO broadcastPropertyDeleteDTO){
+        return broadcastDao.propertyDeleteBroadcast(broadcastPropertyDeleteDTO.getId());
     }
 
 }

@@ -12,5 +12,6 @@ public interface BroadcastDao {
     Integer propertyCreateBroadcast(int createManagerId, String importanceLevel ,String issueName ,String content , String isDeleted , Timestamp createDate);
 //  通用·查询广播通知
     List<Broadcast> generalSearchBroadcast();
-
+//  业主·删除广播
+    Integer propertyDeleteBroadcast(int id);
 }
