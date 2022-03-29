@@ -3,6 +3,7 @@ package com.reecelu.pmsserver.dao;
 import com.reecelu.pmsserver.entity.Pet;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -24,4 +25,6 @@ public interface PetDao {
     //业主修改宠物信息
     Integer proprietorSetPetInfo(int id, String petName , int age , Timestamp createDate ,String species);
 
+    //业主·申请宠物寄养
+    Integer proprietorApplyPetCare(int masterId , int petId , Timestamp startTime , Timestamp endTime);
 }

@@ -1,9 +1,6 @@
 package com.reecelu.pmsserver.service.impl;
 
-import com.reecelu.pmsserver.controller.DTO.pet.PetPropertySearchDTO;
-import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorRegisterDTO;
-import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorSearchDTO;
-import com.reecelu.pmsserver.controller.DTO.pet.ProprietorSetPetInfoDTO;
+import com.reecelu.pmsserver.controller.DTO.pet.*;
 import com.reecelu.pmsserver.dao.PetDao;
 import com.reecelu.pmsserver.entity.Pet;
 import com.reecelu.pmsserver.service.PetService;
@@ -84,4 +81,15 @@ public class PetServiceImpl implements PetService{
         return petDao.proprietorSetPetInfo(id, petName , age , createDate , species);
     }
 
+    /*
+    * 业主申请宠物寄养
+    * */
+    public Integer proprietorApplyPetCare(PetProprietorApplyPetCareDTO petProprietorApplyPetCareDTO){
+        int masterId = petProprietorApplyPetCareDTO.getMasterId();
+        int petId = petProprietorApplyPetCareDTO.getPetId();
+        Timestamp startTime = Timestamp.valueOf(petProprietorApplyPetCareDTO.getStartTime());
+        Timestamp endTime = Timestamp.valueOf(petProprietorApplyPetCareDTO.getEndTime());
+
+        return petDao.proprietorApplyPetCare( masterId,petId,startTime,endTime);
+    }
 }

@@ -1,12 +1,12 @@
 server:
-  ip: 47.100.55.31
+ # ip: 47.100.55.31
   port: 9090
 
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/propertyManagement?serverTimezone=GMT%2b8
-    url: jdbc:mysql://localhost:3306/property_management?serverTimezone=GMT%2b8
+    url: jdbc:mysql://localhost:3306/propertyManagement?serverTimezone=GMT%2b8
+ #   url: jdbc:mysql://localhost:3306/property_management?serverTimezone=GMT%2b8
     username: root
     password: Tapebook123
 mybatis:

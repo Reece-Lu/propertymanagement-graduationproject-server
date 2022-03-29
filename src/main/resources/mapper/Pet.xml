@@ -3,16 +3,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.reecelu.pmsserver.dao.PetDao">
-    <resultMap id="SearchPetList" type="com.reecelu.pmsserver.entity.Pet">
+    <resultMap id="SearchPetList" type="com.reecelu.pmsserver.entity.PetCare">
         <result property="masterId" column="master_id"/>
         <result property="createDate" column="create_date"/>
         <result property="petName" column="pet_name"/>
     </resultMap>
 
-    <parameterMap id="PetParameterMap" type="com.reecelu.pmsserver.entity.Pet">
+    <parameterMap id="PetParameterMap" type="com.reecelu.pmsserver.entity.PetCare">
         <parameter property="masterId" resultMap="master_id" jdbcType="INTEGER"/>
         <parameter property="createDate" resultMap="create_date" jdbcType="TIMESTAMP"/>
         <parameter property="petName" resultMap="pet_name" jdbcType="VARCHAR"/>
+        <parameter property="petId" resultMap="pet_id" jdbcType="INTEGER"/>
+        <parameter property="startTime" resultMap="start_time" jdbcType="TIMESTAMP"/>
+        <parameter property="endTime" resultMap="end_time" jdbcType="TIMESTAMP"/>
     </parameterMap>
 
     <insert id="registerPet" parameterMap="PetParameterMap">
@@ -36,5 +39,9 @@
     <update id="proprietorSetPetInfo">
         update pet set pet_name = #{petName} , age = #{age} , create_date = #{createDate} , species = #{species} where id = #{id};
     </update>
+<!--  业主·申请宠物寄养  -->
+    <insert id="proprietorApplyPetCare" parameterMap="PetParameterMap">
+        Insert into pet_care (master_id, pet_id,start_time, end_time) VALUES (#{masterId} , #{petId} , #{startTime} , #{endTime});
+    </insert>
 
 </mapper>
