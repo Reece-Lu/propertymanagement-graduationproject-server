@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 物业查询
+ * 物业查询快递
  *
  */
 @Data

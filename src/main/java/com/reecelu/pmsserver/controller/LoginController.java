@@ -3,6 +3,8 @@ package com.reecelu.pmsserver.controller;
 import com.reecelu.pmsserver.common.Constants;
 import com.reecelu.pmsserver.common.Result;
 import com.reecelu.pmsserver.controller.DTO.LoginDTO;
+import com.reecelu.pmsserver.controller.DTO.ProprietorRegisterDTO;
+import com.reecelu.pmsserver.controller.DTO.RegisterSMSVerificationDTO;
 import com.reecelu.pmsserver.entity.PropertyManager;
 import com.reecelu.pmsserver.entity.Proprietor;
 import com.reecelu.pmsserver.service.LoginService;
@@ -60,5 +62,44 @@ public class LoginController {
         }
 
     }
+
+
+    //Post请求-验证码测试
+    @ApiOperation(value = "registerSMSVerification",notes = "业主登录验证")  //swagger注释
+    @PostMapping("/registersmsverification")
+    public Result registerSMSVerification(@RequestBody RegisterSMSVerificationDTO registerSMSVerificationDTO) {
+
+        String phoneNum = registerSMSVerificationDTO.getPhoneNum();
+
+        String result = loginService.proprietorRegisterSMS(phoneNum);
+
+        if (result == "0") {
+            return Result.success(result);
+        } else if (result == "1") {
+            return Result.error(Constants.CODE_600, "验证码发送失败");
+        } else{
+            return Result.error(Constants.CODE_600, "手机号已被注册");
+        }
+
+    }
+
+
+    //Post请求-验证码测试
+    @ApiOperation(value = "proprietorRegister",notes = "业主注册")  //swagger注释
+    @PostMapping("/proprietorregister")
+    public Result proprietorRegister(@RequestBody ProprietorRegisterDTO proprietorRegisterDTO) {
+
+        boolean result = loginService.proprietorRegister(proprietorRegisterDTO);
+
+        if(result== true){
+            return Result.success(true);
+        }else{
+            return Result.error(Constants.CODE_600,"注册失败");
+        }
+
+    }
+
+
+
 
 }

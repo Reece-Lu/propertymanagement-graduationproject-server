@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.reecelu.pmsserver.dao.BroadcastDao">
+
     <resultMap id="BroadcastList" type="com.reecelu.pmsserver.entity.Broadcast">
         <result property="createManagerId" column="create_manager_id"/>
         <result property="importanceLevel" column="importance_level"/>

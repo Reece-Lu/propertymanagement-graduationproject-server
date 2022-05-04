@@ -43,6 +43,14 @@
 <!--            <version>3.5.1</version>-->
 <!--        </dependency>-->
 
+        <!-- 腾讯云短信验证码 -->
+        <dependency>
+            <groupId>com.github.qcloudsms</groupId>
+            <artifactId>qcloudsms</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

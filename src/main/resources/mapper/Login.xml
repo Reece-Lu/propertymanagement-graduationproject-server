@@ -11,6 +11,13 @@
         <result property="userName" column="username"/>
     </resultMap>
 
+
+    <parameterMap id="ProprietorParameterMap" type="com.reecelu.pmsserver.entity.Proprietor">
+        <parameter property="roleInFamily" resultMap="role_in_family" jdbcType="VARCHAR"/>
+        <parameter property="userName" resultMap="username" jdbcType="VARCHAR"/>
+        <parameter property="weChat" resultMap="wechat" jdbcType="VARCHAR"/>
+    </parameterMap>
+
     <!--物业·登陆查询，指向dao层对login方法-->
     <select id="loginForPropertyManagement" resultMap="propertyManagerList">
         select * from property_manager where username = #{userName} and password = #{password};
@@ -19,4 +26,31 @@
     <select id="loginForProprietor" resultMap="ProprietorList">
         select * from proprietor where username = #{userName} and password = #{password};
     </select>
+    
+    
+    <!--  业主注册  -->
+    <!--  检查手机号是否存在  -->
+    <select id="whetherRegistered" resultType="java.lang.Integer">
+        SELECT count(*) from proprietor where phone=#{phone};
+    </select>
+    <!--  存放验证信息  -->
+    <update id="UpdateCode">
+        update sms_verification set code=#{code} WHERE phone = #{phone};
+    </update>
+<!-- SMS表新增记录 -->
+    <insert id="newPhone">
+        INSERT INTO sms_verification (phone,code) VALUES (#{phone},#{code});
+    </insert>
+<!--校验验证码-->
+    <select id="getCode" resultType="com.reecelu.pmsserver.entity.SMS">
+        SELECT code from sms_verification where phone=#{phone};
+    </select>
+
+<!-- 插入用户数据   -->
+    <insert id="newProprietor" parameterMap="ProprietorParameterMap">
+        INSERT into proprietor (username, password, name, title, email,phone, wechat, building, door, role_in_family)  VALUES  ( #{userName},#{password},#{name},#{title},#{email},#{phone},#{weChat},#{building},#{door},#{roleInFamily} );
+    </insert>
+
+
+
 </mapper>
