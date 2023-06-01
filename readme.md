@@ -1,3 +1,6 @@
+Link of the frontend of this projrect: https://github.com/Reece-Lu/propertymanagement-graduationproject which is a Vue project.
+
+
 # Abstract
 
 The title of this graduation design is the design and implementation of a smart property management system in the post-epidemic era. With the impact of the epidemic as the background, property has now become the caretaker and leader of the community, and the residents' lives strongly rely on the services provided by property management as a basic guarantee.
