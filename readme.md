@@ -1,5 +1,7 @@
 Link of the frontend of this projrect: https://github.com/Reece-Lu/propertymanagement-graduationproject which is a Vue project.
 
+Link of the interface description(Swagger): http://3.96.64.25:9091/swagger-ui/index.html#/
+
 
 # Abstract
 
