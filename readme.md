@@ -2,6 +2,8 @@ Link of the frontend of this projrect: https://github.com/Reece-Lu/propertymanag
 
 Link of the interface description(Swagger): http://3.96.64.25:9091/swagger-ui/index.html#/
 
+The address of this project: http://3.96.64.25
+
 
 # Abstract
 
