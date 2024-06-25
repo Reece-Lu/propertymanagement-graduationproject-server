@@ -33,7 +33,7 @@ public class CarController {
     CarDao carDao;
 
     //Post请求·业主·登记车辆
-    @ApiOperation(value = "proprietyRegisterCar",notes = "业主登记车辆")  //swagger注释
+    @ApiOperation(value = "proprietyRegisterCar",notes = "registered vehicle")  //swagger注释
     @PostMapping("/proprietyregistercar")
     public Result proprietyRegisterCar(@RequestBody CarProprietorRegisterDTO carProprietorRegisterDTO){
 
@@ -42,14 +42,14 @@ public class CarController {
         if(res!=null){
             return Result.success(res);
         }else{
-            return Result.error(Constants.CODE_600,"登记失败");
+            return Result.error(Constants.CODE_600,"failed to register");
         }
 
     }
 
 
     //Post请求·业主·搜索车辆
-    @ApiOperation(value = "proprietySearchCar",notes = "业主查询车辆")  //swagger注释
+    @ApiOperation(value = "proprietySearchCar",notes = "search vehicle")  //swagger注释
     @PostMapping("/proprietysearchcar")
     public Result proprietySearchCar(@RequestBody CarProprietorSearchDTO carProprietorSearchDTO){
 
@@ -58,13 +58,13 @@ public class CarController {
         if(result!=null){
             return Result.success(result);
         }else{
-            return Result.error(Constants.CODE_600,"登记失败");
+            return Result.error(Constants.CODE_600,"failed to search");
         }
 
     }
 
     //Post请求·业主·修改车辆信息
-    @ApiOperation(value = "proprietyChangeCarInfo",notes = "业主查询车辆")  //swagger注释
+    @ApiOperation(value = "proprietyChangeCarInfo",notes = "edit vehicle info")  //swagger注释
     @PostMapping("/proprietychangecarinfo")
     public Result proprietyChangeCarInfo(@RequestBody CarProprietorChangeCarInfoDTO carProprietorChangeCarInfoDTO){
 
@@ -73,13 +73,13 @@ public class CarController {
         if(res!= 0){
             return Result.success(res);
         }else{
-            return Result.error(Constants.CODE_600,"修改失败");
+            return Result.error(Constants.CODE_600,"failed to edit");
         }
 
     }
 
     //Post请求-物业快递查询
-    @ApiOperation(value = "propertysearchcar",notes = "物业车辆查询")  //swagger注释
+    @ApiOperation(value = "propertysearchcar",notes = "search delivery")  //swagger注释
     @PostMapping("/propertysearchcar")
     public Result propertySearchCar(@RequestBody CarPropertySearchCarDTO carPropertySearchCarDTO){
 
@@ -94,7 +94,7 @@ public class CarController {
         if(res!=null){
             return Result.success(res);
         }else{
-            return Result.error(Constants.CODE_600,"查询失败");
+            return Result.error(Constants.CODE_600,"failed to search");
         }
 
     }

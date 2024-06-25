@@ -25,75 +25,67 @@ import java.util.Map;
 @Resource
 public class ProprietorInfoController {
 
-
-    //业主
     @Autowired
     ProprietorInfoService proprietorInfoService;
 
     @Autowired
     ProprietorInfoDao proprietorInfoDao;
 
-    @ApiOperation(value = "getProprietorInfo",notes = "获取业主个人信息")  //swagger注释
+    @ApiOperation(value = "getProprietorInfo", notes = "Retrieve proprietor's personal information")  // Swagger annotation
     @PostMapping("/getproprietorinfo")
     public Result getProprietorInfo(@RequestBody ProprietorGetSelfInfoDTO proprietorGetSelfInfoDTO){
-        //取出请求中的参数
-        int id= proprietorGetSelfInfoDTO.getId();
+        // Extract parameters from the request
+        int id = proprietorGetSelfInfoDTO.getId();
 
-        //使用 proprietor(业主)类型的对象获取 getProprietorInfo 返回结果
-        Proprietor proprietor=proprietorInfoService.getProprietorInfo(id);
-        //proprietor，反正登陆成功
-        if(proprietor!=null){
+        // Using Proprietor object to get the getProprietorInfo return result
+        Proprietor proprietor = proprietorInfoService.getProprietorInfo(id);
+        // If proprietor is found, return success, otherwise no such person found
+        if(proprietor != null){
             return Result.success(proprietor);
         }else{
-            return Result.error(Constants.CODE_600,"查无此人");
+            return Result.error(Constants.CODE_600, "No such person found");
         }
 
     }
 
-    //业主
-    //业主信息修改功能，传入值：账号ID、属性码attribute、修改值value
-    @ApiOperation(value = "changeProprietorInfo",notes = "修改业主个人信息，传入值：账号ID、属性码attribute、修改值value")  //swagger注释
+    @ApiOperation(value = "changeProprietorInfo", notes = "Modify proprietor's personal information, input values: account ID, attribute code, new value")  // Swagger annotation
     @PostMapping("/changeproprietorinfo")
     public Result changeProprietorInfo(@RequestBody ProprietorSetSelfInfoDTO proprietorSetSelfInfoDTO){
-        //取出请求中的参数
-        int id= proprietorSetSelfInfoDTO.getId();
+        // Extract parameters from the request
+        int id = proprietorSetSelfInfoDTO.getId();
         int attribute = proprietorSetSelfInfoDTO.getAttribute();
-        String value= proprietorSetSelfInfoDTO.getValue();
+        String value = proprietorSetSelfInfoDTO.getValue();
         System.out.println(attribute);
 
-        //使用 feedback类型的对象获取 getProprietorInfo 返回结果
-        int feedback=proprietorInfoService.changeProprietorInfo(id,attribute,value);
-        //feedback为1，则说明信息修改成功
-        if(feedback==1){
+        // Using feedback type object to get changeProprietorInfo return result
+        int feedback = proprietorInfoService.changeProprietorInfo(id, attribute, value);
+        // If feedback is 1, then the information was successfully modified
+        if(feedback == 1){
             return Result.success(feedback);
         }else{
-            return Result.error(Constants.CODE_600,"修改失败");
+            return Result.error(Constants.CODE_600, "Modification failed");
         }
 
     }
 
-    //物业
-    //物业获取业主全部信息
-    @ApiOperation(value = "propertysearchproprietorinfo",notes = "物业查询业主档案")  //swagger注释
+    @ApiOperation(value = "propertySearchProprietorInfo", notes = "Property searches for proprietor information")  // Swagger annotation
     @PostMapping("/propertysearchproprietorinfo")
     public Result propertySearchProprietorInfo(@RequestBody PropertyGetProprietorInfoDTO propertyGetProprietorInfoDTO){
 
-        Integer total=proprietorInfoDao.countAllProperty(propertyGetProprietorInfoDTO.getName());
-        //使用 Proprietor (业主)类型的对象获取 getAllProprietor 返回结果
+        Integer total = proprietorInfoDao.countAllProperty(propertyGetProprietorInfoDTO.getName());
+        // Using Proprietor object to get getAllProprietor return result
         List<Proprietor> result = proprietorInfoService.getAllProprietor(propertyGetProprietorInfoDTO);
-        //若对象 res 为空则表明数据库为匹配到结果
+        // If no matching results in the database
 
-        Map<String,Object> res=new HashMap<>();
-        res.put("total",total);
-        res.put("tableData",result);
-        if(res!=null){
+        Map<String,Object> res = new HashMap<>();
+        res.put("total", total);
+        res.put("tableData", result);
+        if(res != null){
             return Result.success(res);
         }else{
-            return Result.error(Constants.CODE_600,"查询失败");
+            return Result.error(Constants.CODE_600, "Search failed");
         }
 
     }
-
-
 
 }

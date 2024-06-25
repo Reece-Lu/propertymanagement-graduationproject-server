@@ -1,15 +1,13 @@
 server:
-  port:9090
+  port: 9091
 
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/propertyManagement?serverTimezone=GMT%2b8
+    url: jdbc:mysql://104.42.29.134:3306/residentialcomplex?serverTimezone=GMT-8
     username: root
-    password: Tapebook123
+    password: Tapebook123#
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-

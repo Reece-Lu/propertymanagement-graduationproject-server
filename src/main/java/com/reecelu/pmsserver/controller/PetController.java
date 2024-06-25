@@ -1,6 +1,5 @@
 package com.reecelu.pmsserver.controller;
 
-
 import com.reecelu.pmsserver.common.Constants;
 import com.reecelu.pmsserver.common.Result;
 import com.reecelu.pmsserver.controller.DTO.pet.PetPropertySearchDTO;
@@ -29,66 +28,64 @@ public class PetController {
     @Autowired
     PetDao petDao;
 
-    @ApiOperation(value = "proprietorRegisterPet",notes = "业主登记宠物")  //swagger注释
+    @ApiOperation(value = "proprietorRegisterPet", notes = "Proprietor registers a pet")  // Swagger annotation
     @PostMapping("/proprietorregisterPet")
     public Result proprietorRegisterPet(@RequestBody PetProprietorRegisterDTO petProprietorRegisterDTO){
 
-        //使用 int 类型的对象获取 proprietorRegister 返回结果
+        // Use integer type object to get proprietorRegister result
         Integer res = petService.proprietorRegister(petProprietorRegisterDTO);
-        //proprietor，反正登陆成功
-        if(res!=0){
+        // If proprietor registration is successful
+        if(res != 0){
             return Result.success(res);
         }else{
-            return Result.error(Constants.CODE_600,"登记失败咯");
+            return Result.error(Constants.CODE_600,"Registration failed");
         }
 
     }
 
-
-    @ApiOperation(value = "propertySearchPet",notes = "物业查询宠物")  //swagger注释
+    @ApiOperation(value = "propertySearchPet", notes = "Property searches for pets")  // Swagger annotation
     @PostMapping("/propertysearchpet")
-    public Result propertySearchPet(@RequestBody PetPropertySearchDTO petProprietorRegisterDTO ){
+    public Result propertySearchPet(@RequestBody PetPropertySearchDTO petPropertySearchDTO){
 
-       List<Pet> result = petService.propertySearchPet(petProprietorRegisterDTO);
-       int total = petDao.propertySearchCount(petProprietorRegisterDTO.getName(),petProprietorRegisterDTO.getPhone());
+        List<Pet> result = petService.propertySearchPet(petPropertySearchDTO);
+        int total = petDao.propertySearchCount(petPropertySearchDTO.getName(), petPropertySearchDTO.getPhone());
 
-        Map<String,Object> res=new HashMap<>();
-        res.put("total",total);
-        res.put("tableData",result);
+        Map<String,Object> res = new HashMap<>();
+        res.put("total", total);
+        res.put("tableData", result);
 
-        if(res!=null){
+        if(res != null){
             return Result.success(res);
         }else{
-            return Result.error(Constants.CODE_600,"查询失败");
+            return Result.error(Constants.CODE_600,"Search failed");
         }
 
     }
 
-
-    @ApiOperation(value = "proprietorSearchPet",notes = "物业查询宠物")  //swagger注释
+    @ApiOperation(value = "proprietorSearchPet", notes = "Proprietor searches for pets")  // Swagger annotation
     @PostMapping("/proprietorsearchpet")
     public Result proprietorSearchPet(@RequestBody PetProprietorSearchDTO petProprietorSearchDTO){
 
         List<Pet> result = petService.proprietorSearchPet(petProprietorSearchDTO);
 
-        if(result!=null){
+        if(result != null){
             return Result.success(result);
         }else{
-            return Result.error(Constants.CODE_600,"查询失败");
+            return Result.error(Constants.CODE_600,"Search failed");
         }
 
     }
 
-    @ApiOperation(value = "proprietorSetPet",notes = "物业更新宠物信息")  //swagger注释
+    @ApiOperation(value = "proprietorSetPet", notes = "Proprietor updates pet information")  // Swagger annotation
     @PostMapping("/proprietorsetpet")
     public Result proprietorSetPet(@RequestBody ProprietorSetPetInfoDTO proprietorSetPetInfoDTO){
 
         Integer res = petService.proprietorSetPet(proprietorSetPetInfoDTO);
 
-        if(res!=null){
+        if(res != null){
             return Result.success(res);
         }else{
-            return Result.error(Constants.CODE_600,"更新失败");
+            return Result.error(Constants.CODE_600,"Update failed");
         }
 
     }

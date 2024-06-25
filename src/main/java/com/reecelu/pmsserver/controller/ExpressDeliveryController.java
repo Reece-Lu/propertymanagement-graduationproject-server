@@ -32,67 +32,67 @@ public class ExpressDeliveryController {
     @Autowired
     ExpressDeliveryDao expressDeliveryDao;
 
-    //Post请求-物业快递查询
-    @ApiOperation(value = "propertysearch",notes = "物业快递查询")  //swagger注释
+    // POST request - Property Express Delivery Search
+    @ApiOperation(value = "propertysearch", notes = "Property express delivery search")  // Swagger annotation
     @PostMapping("/propertysearch")
-    public Result ExpressDeliveryPropertySearch(@RequestBody DeliveryPropertySearchDTO deliveryPropertySearchDTO){
+    public Result expressDeliveryPropertySearch(@RequestBody DeliveryPropertySearchDTO deliveryPropertySearchDTO){
 
-        Integer total=expressDeliveryDao.countExpressDelivery(deliveryPropertySearchDTO.getName(), deliveryPropertySearchDTO.getPhone());
-        //使用 ExpressDelivery (快递)类型的对象获取 getExpressDeliveryInfo 返回结果
+        Integer total = expressDeliveryDao.countExpressDelivery(deliveryPropertySearchDTO.getName(), deliveryPropertySearchDTO.getPhone());
+        // Using ExpressDelivery object to obtain the getExpressDeliveryInfo result
         List<ExpressDelivery> result = expressDeliveryService.getExpressDeliveryInfo(deliveryPropertySearchDTO);
-        //若对象 res 为空则表明数据库为匹配到结果
+        // If the object res is empty, it implies no matching results in the database
 
-        Map<String,Object> res=new HashMap<>();
-        res.put("total",total);
-        res.put("tableData",result);
-        if(res!=null){
+        Map<String,Object> res = new HashMap<>();
+        res.put("total", total);
+        res.put("tableData", result);
+        if (res != null) {
             return Result.success(res);
-        }else{
-            return Result.error(Constants.CODE_600,"查询失败");
+        } else {
+            return Result.error(Constants.CODE_600, "Search failed");
         }
 
     }
 
-    @ApiOperation(value = "proprietorEntrustDelivery",notes = "业主申请快递代领服务")
+    @ApiOperation(value = "proprietorEntrustDelivery", notes = "Proprietor applies for express delivery pickup service")
     @PostMapping("/proprietorentrustdelivery")
     public Result proprietorEntrustDelivery(@RequestBody DeliveryProprietorEntrustDTO deliveryProprietorEntrustDTO){
 
-        Integer result= expressDeliveryService.entrustExpressDelivery(deliveryProprietorEntrustDTO);
+        Integer result = expressDeliveryService.entrustExpressDelivery(deliveryProprietorEntrustDTO);
 
-        if(result!=null){
+        if (result != null) {
             return Result.success(result);
-        }else{
-            return Result.error(Constants.CODE_600,"查询失败");
+        } else {
+            return Result.error(Constants.CODE_600, "Search failed");
         }
 
     }
 
-    //Post物业设置快递派件人
-    @ApiOperation(value = "propertyAddDeliveryServiceman",notes = "业主申请快递代领服务")
+    // POST - Add Delivery Serviceman for Property
+    @ApiOperation(value = "propertyAddDeliveryServiceman", notes = "Proprietor applies for express delivery pickup service")
     @PostMapping("/propertyadddeliveryserviceman")
     public Result propertyAddDeliveryServiceman(@RequestBody DeliveryPropertySetServicemanDTO deliveryPropertySetServicemanDTO){
 
-        Integer result= expressDeliveryService.addExpressDeliveryServiceman(deliveryPropertySetServicemanDTO);
+        Integer result = expressDeliveryService.addExpressDeliveryServiceman(deliveryPropertySetServicemanDTO);
 
-        if(result!=null){
+        if (result != null) {
             return Result.success(result);
-        }else{
-            return Result.error(Constants.CODE_600,"查询失败");
+        } else {
+            return Result.error(Constants.CODE_600, "Search failed");
         }
 
     }
 
-    //Post业主查询快递信息
-    @ApiOperation(value = "proprietorTrackDelivery",notes = "业主查询快递信息")
+    // POST - Proprietor Track Delivery Information
+    @ApiOperation(value = "proprietorTrackDelivery", notes = "Proprietor tracks express delivery information")
     @PostMapping("/proprietortrackdelivery")
     public Result proprietorTrackDelivery(@RequestBody DeliveryProprietorTrackListDTO deliveryProprietorTrackListDTO){
 
-        List<ExpressDelivery> res= expressDeliveryService.getExpressDeliveryInfoProprietor(deliveryProprietorTrackListDTO);
+        List<ExpressDelivery> res = expressDeliveryService.getExpressDeliveryInfoProprietor(deliveryProprietorTrackListDTO);
 
-        if(res!=null){
+        if (res != null) {
             return Result.success(res);
-        }else{
-            return Result.error(Constants.CODE_600,"查询失败");
+        } else {
+            return Result.error(Constants.CODE_600, "Search failed");
         }
 
     }
