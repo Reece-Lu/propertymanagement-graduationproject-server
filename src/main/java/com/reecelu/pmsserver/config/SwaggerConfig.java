@@ -18,27 +18,26 @@ public class SwaggerConfig {
     @Bean
     public Docket restApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("标准接口")
-                .apiInfo(apiInfo("Spring Boot中使用Swagger3构建RESTful APIs", "1.0"))
+                .groupName("Standard interface")
+                .apiInfo(apiInfo("Use Swagger to build RESTful APIs in Spring Boot", "1.0"))
                 .useDefaultResponseMessages(true)
                 .forCodeGeneration(false)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.reecelu.pmsserver.controller"))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .pathMapping("/complex"); // Set the base URL path here
     }
 
     /**
-     * 创建该API的基本信息（这些基本信息会展现在文档页面中）
-     * 访问地址：http://localhost:9090/swagger-ui/index.html
+     * http://localhost:9091/swagger-ui/index.html
      *
      * @return
      */
     private ApiInfo apiInfo(String title, String version) {
         return new ApiInfoBuilder()
-                .title("后疫情时代物业管理系统接口说明")
-                .description("项目文件地址: http://82.156.219.134:1214/Reece_Lu/propertymanagement-graduationproject-server.git")
-                .contact(new Contact("LuYuwen", "http://82.156.219.134:1214/Reece_Lu", "luyuwen2000@163.com"))
+                .title("Residential Complex Management System interface description")
+                .contact(new Contact("Yuwen Lu", "https://www.meetyuwen.com", "luyuwen2000@163.com"))
                 .version(version)
                 .build();
     }

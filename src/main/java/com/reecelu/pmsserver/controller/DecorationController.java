@@ -33,7 +33,7 @@ public class DecorationController {
     DecorationDao decorationDao;
 
     //Post请求-物业
-    @ApiOperation(value = "proprietorRegisterDecoration",notes = "物业装修登记")  //swagger注释
+    @ApiOperation(value = "proprietorRegisterDecoration",notes = "Property decoration registration")
     @PostMapping("/proprietorregisterdecoration")
     public Result proprietorRegisterDecoration(@RequestBody DecorationProprietorRegisterDTO decorationProprietorRegisterDTO){
 
@@ -43,13 +43,13 @@ public class DecorationController {
         if(res!=null){
             return Result.success(res);
         }else{
-            return Result.error(Constants.CODE_600,"登记失败");
+            return Result.error(Constants.CODE_600,"failed to register");
         }
 
     }
 
     //Post请求-物业装修查询
-    @ApiOperation(value = "propertydecorationsearch",notes = "物业装修查询")  //swagger注释
+    @ApiOperation(value = "propertydecorationsearch",notes = "search decoration")  //swagger注释
     @PostMapping("/propertydecorationsearch")
     public Result PropertyDecorationSearch(@RequestBody DecorationPropertySearchDTO decorationPropertySearchDTO){
 
@@ -64,7 +64,7 @@ public class DecorationController {
         if(res!=null){
             return Result.success(res);
         }else{
-            return Result.error(Constants.CODE_600,"查询失败");
+            return Result.error(Constants.CODE_600,"failed to search");
         }
 
     }
