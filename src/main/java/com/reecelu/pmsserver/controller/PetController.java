@@ -2,10 +2,7 @@ package com.reecelu.pmsserver.controller;
 
 import com.reecelu.pmsserver.common.Constants;
 import com.reecelu.pmsserver.common.Result;
-import com.reecelu.pmsserver.controller.DTO.pet.PetPropertySearchDTO;
-import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorRegisterDTO;
-import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorSearchDTO;
-import com.reecelu.pmsserver.controller.DTO.pet.ProprietorSetPetInfoDTO;
+import com.reecelu.pmsserver.controller.DTO.pet.*;
 import com.reecelu.pmsserver.dao.PetDao;
 import com.reecelu.pmsserver.entity.Pet;
 import com.reecelu.pmsserver.service.PetService;
@@ -75,7 +72,7 @@ public class PetController {
         }
 
     }
-
+  
     @ApiOperation(value = "proprietorSetPet", notes = "Proprietor updates pet information")  // Swagger annotation
     @PostMapping("/proprietorsetpet")
     public Result proprietorSetPet(@RequestBody ProprietorSetPetInfoDTO proprietorSetPetInfoDTO){
@@ -86,6 +83,22 @@ public class PetController {
             return Result.success(res);
         }else{
             return Result.error(Constants.CODE_600,"Update failed");
+        }
+
+    }
+
+
+
+    @ApiOperation(value = "proprietorApplyPetCare",notes = "业主申请宠物寄养")  //swagger注释
+    @PostMapping("/proprietorapplypetcare")
+    public Result proprietorApplyPetCare(@RequestBody PetProprietorApplyPetCareDTO petProprietorApplyPetCareDTO){
+
+        Integer res = petService.proprietorApplyPetCare(petProprietorApplyPetCareDTO);
+
+        if(res!=null){
+            return Result.success(res);
+        }else{
+            return Result.error(Constants.CODE_600,"申请失败");
         }
 
     }

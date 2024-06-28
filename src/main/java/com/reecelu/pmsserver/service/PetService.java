@@ -1,10 +1,8 @@
 package com.reecelu.pmsserver.service;
 
-import com.reecelu.pmsserver.controller.DTO.pet.PetPropertySearchDTO;
-import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorRegisterDTO;
-import com.reecelu.pmsserver.controller.DTO.pet.PetProprietorSearchDTO;
-import com.reecelu.pmsserver.controller.DTO.pet.ProprietorSetPetInfoDTO;
+import com.reecelu.pmsserver.controller.DTO.pet.*;
 import com.reecelu.pmsserver.entity.Pet;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,4 +18,5 @@ public interface PetService {
 
     Integer proprietorSetPet(ProprietorSetPetInfoDTO proprietorSetPetInfoDTO);
 
+    Integer proprietorApplyPetCare(PetProprietorApplyPetCareDTO petProprietorApplyPetCareDTO);
 }
